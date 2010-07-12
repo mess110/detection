@@ -1,0 +1,60 @@
+require 'net/http'
+require 'uri'
+require 'json'
+require 'cgi'
+require 'lib/language.rb'
+require 'lib/exceptions.rb'
+
+module Translation
+  class Google
+
+    TRANSLATE = 'http://ajax.googleapis.com/ajax/services/language/translate'
+    DETECT = 'http://ajax.googleapis.com/ajax/services/language/detect'
+    DEFAULT_VERSION  = 1.0
+
+    class << self
+
+      def detect ( text )
+        puts "Language detection not implemented yet. URL om translation.rb"
+        raise NotImplementedYet
+      end
+
+      def translate( text, to, from=Translation::Language::ENGLISH )
+        begin
+          raise NoGivenString if text.empty?
+
+          params = {
+            :langpair => "#{from}|#{to}", 
+            :q => text,
+            :v => DEFAULT_VERSION
+          }
+
+          query = params.map{ |k,v| "#{k}=#{CGI.escape(v.to_s)}" }.join('&')
+
+          response = Net::HTTP.get_response( URI.parse( "#{TRANSLATE}?#{query}" ) )
+            
+          json = JSON.parse( response.body )
+
+          if json['responseStatus'] == 200
+            json['responseData']['translatedText']
+          else
+            puts 'responseDetails: ' + json['responseDetails']
+            raise TranslateError
+          end
+
+        rescue SocketError
+          puts "Error in connection"
+          raise
+        rescue NoGivenString
+          puts "String can not be null"
+          raise
+        rescue TranslateError
+          puts "There was some translation error. See responseDetails!"
+          raise
+        end
+      end
+
+    end
+  end
+end
+

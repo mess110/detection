@@ -1,0 +1,10 @@
+module Translation
+  class NoGivenString < Exception
+  end
+
+  class TranslateError < Exception
+  end
+
+  class ConnectionError < Exception
+  end
+end

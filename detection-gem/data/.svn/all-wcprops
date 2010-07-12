@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/opencvlibrary/!svn/ver/2217/tags/latest_tested_snapshot/opencv/data
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opencvlibrary/!svn/ver/2217/tags/latest_tested_snapshot/opencv/data/Makefile.in
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opencvlibrary/!svn/ver/2217/tags/latest_tested_snapshot/opencv/data/Makefile.am
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opencvlibrary/!svn/ver/2217/tags/latest_tested_snapshot/opencv/data/readme.txt
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/opencvlibrary/!svn/ver/2217/tags/latest_tested_snapshot/opencv/data/CMakeLists.txt
+END
