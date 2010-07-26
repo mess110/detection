@@ -1,18 +1,11 @@
 class DetectionController < SecureApplicationController
 
-  #imba regular expression that checks if URL is valid. performs checks
-  VALID_URL = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/)+(.*\.(png|jpg)$)/ix
   VALID_FORMAT = /^\d{1,7}$/
 
   def new
     #do security checks
     if !(params[:url] && !params[:url].blank?)
-      raise ERROR_INVALID_URL
-    end
-
-    #if it is a valid format
-    if !(params[:url] =~ VALID_URL)
-      raise ERROR_INVALID_URL
+      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
     end
 
     #prepare the image
@@ -20,7 +13,9 @@ class DetectionController < SecureApplicationController
     cache_images = Image.find(:all, :params => { :resource => params[:url]})
     if cache_images.size == 0
       image.resource = params[:url]
-      image.save
+      if !image.save
+        raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+      end
     else
       image = cache_images[0]
     end
@@ -29,7 +24,9 @@ class DetectionController < SecureApplicationController
     q = Query.new
     q.api_key_id = session[:key_id].to_i
     q.image_id = image.id
-    q.save
+    if !q.save
+      raise Exceptions::NotMyFault.new(ERROR_SAVE_QUERY)
+    end
 
     redirect_to :action => 'show', :params => { :url => image.id }
   end
@@ -37,16 +34,17 @@ class DetectionController < SecureApplicationController
   def show
     #do security checks
     if !(params[:url] && !params[:url].blank?)
-      raise ERROR_INVALID_URL
+      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
     end
 
-    #if it is a valid format
+    #if it is a valid format (number)
+    #since this is used to search in the model this will be checked
     if !(params[:url] =~ VALID_FORMAT)
-      raise ERROR_INVALID_URL
+      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
     end
 
     #if the image does not exist
-    Image.find(params[:url].to_i) rescue raise ERROR_INVALID_URL
+    Image.find(params[:url].to_i) rescue raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
 
     foo = Array.new
     regions = Region.find(:all, :params => { :image_id => params[:url]})
@@ -56,15 +54,19 @@ class DetectionController < SecureApplicationController
           :top_left_y       => region.top_left_y,
           :bottom_right_x   => region.bottom_right_x,
           :bottom_right_y   => region.bottom_right_y
-        }
+      }
     end
 
-    @response = {
-      :id             => params[:url].to_i,
+    response = {
+      :query_id       => params[:url].to_i,
       :time           => Time.now,
       :faces          => foo
     }
 
-    render :xml => @response
+    respond_to do |format|
+      format.html { render :xml   => response }
+      format.xml  { render :xml   => response }
+      format.json { render :json  => response }
+    end
   end
 end
