@@ -63,10 +63,11 @@ class DetectionController < SecureApplicationController
       :faces          => foo
     }
 
-    respond_to do |format|
-      format.html { render :xml   => response }
-      format.xml  { render :xml   => response }
-      format.json { render :json  => response }
-    end
+    #respond_to do |format|
+      #format.html { render :xml   => response }
+      #format.xml  { render :xml   => response }
+      #format.json { render :json  => response }
+    #end
+    render :xml => response
   end
 end
