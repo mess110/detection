@@ -1,4 +1,4 @@
-class DetectionController < SecureApplicationController
+class DetectController < SecureApplicationController
 
   VALID_FORMAT = /^\d{1,7}$/
 

@@ -1,0 +1,2 @@
+module WebHelper
+end
