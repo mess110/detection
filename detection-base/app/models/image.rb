@@ -9,13 +9,14 @@ class Image < ActiveRecord::Base
 
   #download the image after the resource was created in the database
   def after_save
-    download_image
-    scan_image
+    image_path = File.dirname(__FILE__) + '/../../public/images/cache/' + self[:id].to_s
+    download_image image_path
+    scan_image image_path
   end
 
   private
     
-  def download_image
+  def download_image(image_path)
     #split url in different parts
     uri = URI.parse(self[:resource])
 
@@ -28,7 +29,7 @@ class Image < ActiveRecord::Base
       if (file_size.to_i <= MAX_FILE_SIZE)
         response = http.get( uri.request_uri )
         #TODO: FIX THIS CRAP. if the folder path does not exist, it does not work
-        open("public/images/cache/" + self.id.to_s, "w") { |file|
+        open(image_path, "w") { |file|
           file.write(response.body)
         } rescue raise "can not write to file"
       else
@@ -37,9 +38,9 @@ class Image < ActiveRecord::Base
     }
   end
 
-  def scan_image
-    file = 'public/images/cache/' + self[:id].to_s
-    foo = Detector.find(file)
+  def scan_image(image_path)
+    #file = 'public/images/cache/' + self[:id].to_s
+    foo = Detector.find(image_path)
     foo[:regions].each do |region|
       r = Region.new
       r.image_id = self[:id]
