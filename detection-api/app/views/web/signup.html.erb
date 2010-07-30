@@ -1,0 +1,66 @@
+<center><p class="warning" id="notice">Welcome to the FREE face detection API!! <br><b>Login and Register with the form below!</b> (we do not care about or need any extra information and belive you don't have to give it away to use any type of service!)</p></center>
+<center>
+<div id="main">
+<p class="warning">
+<b>Your API Key:
+<input type="text" id="key" value="" class="userinfo"/>
+Your Secret:
+<input type="text" id="secret" value="" class="userinfo"/></b>
+<br /><br />
+URL
+<input type="text" id="urlbox" value="http://sphotos.ak.fbcdn.net/photos-ak-snc1/v272/12/29/1352704123/n1352704123_30009292_5638.jpg"/>
+<a href="javascript: reqTest();"><b>TEST</b></a><br />
+</p>
+<canvas id="workingOn" width="600" height="400"></canvas>
+</div>
+</center>
+
+<div id="signup">
+  <table align="center">
+    <tr>
+      <td>
+        Email
+        <input type="text" id="email" value="mess110@gmail.com"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Password
+        <input type="password" id="pass" value="forthehorde"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Retype Password
+        <input type="password" id="repass" value="forthehorde"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="javascript: auth();">Authenticate</a>
+      </td>
+    </tr>
+  </table>
+</div>
+<br />
+
+<script type="text/javascript">
+Element.hide('main');
+
+function scanEffect() {
+  <%=visual_effect(:fade, "workingOn", :duration => 0.5)%>
+  <%=visual_effect(:appear, "notice", :duration => 0.5)%>
+}
+
+function scanEffect2() {
+  <%=visual_effect(:appear, "workingOn", :duration => 0.5)%>
+  <%=visual_effect(:fade, "notice", :duration => 0.5)%>
+}
+
+function authEffect() {
+  //<%=visual_effect(:toggle_appear, "api", :duration => 0.5)%>
+  <%=visual_effect(:toggle_appear, "signup", :duration => 0.5)%>
+  <%=visual_effect(:toggle_appear, "main", :duration => 0.5, :delay => 0.5)%>
+}
+</script>
+

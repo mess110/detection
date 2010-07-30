@@ -4,14 +4,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Tests: <%= controller.action_name %></title>
-  <%= javascript_include_tag 'prototype' %>
+  <title>Free FaceDetection API: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag "sinatra", :media => "screen,projection" %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "webtoolkit.base64" %>
+  <%= javascript_include_tag "web" %>
+  <%= javascript_include_tag "xml2json" %>
 </head>
 <body>
+<div id='wrap'> 
 
-<p style="color: green"><%= notice %></p>
-
-<%= yield %>
-
+  <DIV id="head">
+    <br />
+    <UL>
+      <LI>face detection api:</LI>
+      <LI><A href="signup">authenticate</A></LI>,
+      <LI><A href="example">example</A></LI>
+    </UL>
+  </DIV>
+  <DIV id="content">
+  <%= yield %>
+  </DIV>
+</div>
 </body>
 </html>
+

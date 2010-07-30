@@ -5,7 +5,7 @@ class Image < ActiveRecord::Base
 
   validates_uniqueness_of :resource
   validates_format_of :resource, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/)+(.*\.(png|jpg)$)/ix,
-    :message => "invalid url"
+    :message => "invalid url!"
 
   #download the image after the resource was created in the database
   def after_save

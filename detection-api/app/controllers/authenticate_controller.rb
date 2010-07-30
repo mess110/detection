@@ -23,7 +23,7 @@ class AuthenticateController < ApplicationController
       if user.save
         format_response(user)
       else
-        raise user.errors.full_messages[0].to_s
+        raise Exceptions::NotMyFault.new(user.errors.full_messages[0])
       end
     end
   end
@@ -41,11 +41,11 @@ class AuthenticateController < ApplicationController
       }
     }
     
-    #respond_to do |format|
+    respond_to do |format|
       #format.html { render :xml   => response }
-      #format.xml  { render :xml   => response }
-      #format.json { render :json  => response }
-    #end
-    render :xml => response
+      format.xml  { render :xml   => response }
+      format.json { render :json  => response }
+    end
+    #render :xml => response
   end
 end

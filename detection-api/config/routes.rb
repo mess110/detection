@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   # Keep in mind you can assign values other than :controller and :action
   map.connect 'authenticate', :controller => 'authenticate'
   map.connect 'detect/:action', :controller => 'detect'
-  map.connect 'web', :controller => 'web', :action => 'index'
+  map.connect 'web/:action', :controller => 'web'
 
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
