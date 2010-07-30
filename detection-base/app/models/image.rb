@@ -11,7 +11,6 @@ class Image < ActiveRecord::Base
   def after_save
     image_path = File.dirname(__FILE__) + '/../../public/images/cache/' + self[:id].to_s
     download_image image_path
-    scan_image image_path
   end
 
   private
@@ -28,7 +27,6 @@ class Image < ActiveRecord::Base
       #check file size
       if (file_size.to_i <= MAX_FILE_SIZE)
         response = http.get( uri.request_uri )
-        #TODO: FIX THIS CRAP. if the folder path does not exist, it does not work
         open(image_path, "w") { |file|
           file.write(response.body)
         } rescue raise "can not write to file"
@@ -36,6 +34,7 @@ class Image < ActiveRecord::Base
         raise "file size too big"
       end
     }
+    scan_image image_path
   end
 
   def scan_image(image_path)

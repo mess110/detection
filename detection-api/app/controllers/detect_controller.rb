@@ -4,7 +4,7 @@ class DetectController < SecureApplicationController
 
   def new
     #do security checks
-    if !(params[:url] && !params[:url].blank?)
+    if (!params[:url] || params[:url].blank?)
       raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
     end
 
