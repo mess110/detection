@@ -1,61 +1,22 @@
 <H3>API Overview</H3>
-<P>To use this API you need to signup to get an api_key. You can do that
-<a href="signup">here</a>.</P>
-<p>Once you have an api_key you connect using http_basic_authentication. To connect just access
-any of the API methods and basic authentication will be requested.</p>
-<P>The API takes an image URL as a parameter, scans that image for faces and
-returns a XML response with the coordinates of faces.</P>
-<p>Supported image formats are PNG and JPEG and maximum file size is bytes. Converting the image to black and white or reducing quality to reduce size won't (most likely) affect the detection process. Smaller image size means faster image download rate which results in faster detection.</p>
-<H3>Examples</H3>
-<p>Sample request from URL image</p>
-<pre>
-/images/new?url=YOUR_IMAGE_URL
-</pre>
-<p>Result (speaks xml)</p>
+<P>Get your free API Key and Secret and start detecting <b>frontal faces</b> in PNG or JPEG images.</P>
+<p>This service is free and it will stay free! If you want you can donate to help with hosting/beer fees. (student life is fun)</p>
+<p>Below you will find examples on how to use the API and a list of clients.</p>
+<H3>Clients</H3>
+<p>Java: soon</p>
+<p>Ruby: soon</p>
+<p>More to come</p>
+<H3>Examples - using <a href="http://curl.haxx.se/">curl</a></H3><br />
+Get your key and secret! (replace [YOUR_EMAIL] and [YOUR_PASSWORD])
 <pre>
 <code>
-&lt;hash&gt; 
-  &lt;time type="datetime"&gt;2010-07-09T21:44:19+02:00&lt;/time&gt; 
-  &lt;faces type="array"&gt; 
-    &lt;face&gt; 
-      &lt;top-left-x type="integer"&gt;228&lt;/top-left-x&gt; 
-      &lt;top-left-y type="integer"&gt;200&lt;/top-left-y&gt; 
-      &lt;bottom-right-x type="integer"&gt;252&lt;/bottom-right-x&gt; 
-      &lt;bottom-right-y type="integer"&gt;224&lt;/bottom-right-y&gt; 
-    &lt;/face&gt; 
-    &lt;face&gt; 
-      &lt;top-left-x type="integer"&gt;319&lt;/top-left-x&gt; 
-      &lt;top-left-y type="integer"&gt;23&lt;/top-left-y&gt; 
-      &lt;bottom-right-x type="integer"&gt;366&lt;/bottom-right-x&gt; 
-      &lt;bottom-right-y type="integer"&gt;70&lt;/bottom-right-y&gt; 
-    &lt;/face&gt; 
-    &lt;face&gt; 
-      &lt;top-left-x type="integer"&gt;519&lt;/top-left-x&gt; 
-      &lt;top-left-y type="integer"&gt;26&lt;/top-left-y&gt; 
-      &lt;bottom-right-x type="integer"&gt;567&lt;/bottom-right-x&gt; 
-      &lt;bottom-right-y type="integer"&gt;74&lt;/bottom-right-y&gt; 
-    &lt;/face&gt; 
-    &lt;face&gt; 
-      &lt;top-left-x type="integer"&gt;410&lt;/top-left-x&gt; 
-      &lt;top-left-y type="integer"&gt;14&lt;/top-left-y&gt; 
-      &lt;bottom-right-x type="integer"&gt;459&lt;/bottom-right-x&gt; 
-      &lt;bottom-right-y type="integer"&gt;63&lt;/bottom-right-y&gt; 
-    &lt;/face&gt; 
-    &lt;face&gt; 
-      &lt;top-left-x type="integer"&gt;118&lt;/top-left-x&gt; 
-      &lt;top-left-y type="integer"&gt;40&lt;/top-left-y&gt; 
-      &lt;bottom-right-x type="integer"&gt;185&lt;/bottom-right-x&gt; 
-      &lt;bottom-right-y type="integer"&gt;107&lt;/bottom-right-y&gt; 
-    &lt;/face&gt; 
-    &lt;face&gt; 
-      &lt;top-left-x type="integer"&gt;28&lt;/top-left-x&gt; 
-      &lt;top-left-y type="integer"&gt;44&lt;/top-left-y&gt; 
-      &lt;bottom-right-x type="integer"&gt;102&lt;/bottom-right-x&gt; 
-      &lt;bottom-right-y type="integer"&gt;118&lt;/bottom-right-y&gt; 
-    &lt;/face&gt; 
-  &lt;/faces&gt; 
-  &lt;id type="integer"&gt;23&lt;/id&gt; 
-&lt;/hash&gt;
+curl -H "Content-Type: text/json" -X GET 'http://detection.myvhost.de/auth/?email=[YOUR_EMAIL]&pass=[YOUR_PASSWORD]' -i
+</code>
+</pre>
+Initiate a new face detection request. (replace [YOUR_API_KEY], [YOUR_API_SECRET] and [YOUR_URL])
+<pre>
+<code>
+curl -u [YOUR_API_KEY]:[YOUR_API_SECRET] -H "Content-Type: text/xml" -X GET 'http://detection.myvhost.de/detect/new/?url=[YOUR_URL]' -i -L
 </code>
 </pre>
 

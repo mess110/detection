@@ -20,6 +20,8 @@ function reqTest() {
       if (parser.isError() == false) {
         var canvas = document.getElementById("workingOn");
         var context = canvas.getContext("2d");
+        context.fillStyle = "#FFFFFF";
+        context.fillRect(0,0,600,400);
         var cat = new Image();
         cat.src = $("urlbox").value;
         cat.onload = function() {
@@ -58,7 +60,7 @@ function auth() {
     return;
   }
 
-  var uri = '/authenticate/?email=' + $('email').value + '&pass=' + $('pass').value;
+  var uri = '/auth/?email=' + $('email').value + '&pass=' + $('pass').value;
   new Ajax.Request(uri,
   {
     requestHeaders: {Accept: 'application/json'},

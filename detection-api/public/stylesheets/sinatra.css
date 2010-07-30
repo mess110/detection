@@ -63,6 +63,15 @@ body {
   padding-top:10px;
 }
 
+#footer {
+  color:#111;
+  max-width:52em;
+  min-width:27em;
+  margin:7px auto;
+  padding-top:10px;
+  text-align: center;
+}
+
 /* HEADINGS */
 
 h1, h2, h3 { color:#000 }

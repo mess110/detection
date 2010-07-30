@@ -2,7 +2,6 @@ class WebController < ApplicationController
   layout 'web'
 
   def index
-    #render :text => 'asd'
     redirect_to :action => 'signup'
   end
 
@@ -11,5 +10,8 @@ class WebController < ApplicationController
   end
 
   def example
+  end
+
+  def thanks
   end
 end

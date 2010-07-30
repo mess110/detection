@@ -1,4 +1,4 @@
-class AuthenticateController < ApplicationController
+class AuthController < ApplicationController
 
   def index
     if !(params[:email] && !params[:email].blank?)

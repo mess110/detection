@@ -19,12 +19,17 @@
     <UL>
       <LI>face detection api:</LI>
       <LI><A href="signup">authenticate</A></LI>,
-      <LI><A href="example">example</A></LI>
+      <LI><A href="example">info</A></LI>,
+      <LI><A href="thanks">thanks</A></LI>
     </UL>
   </DIV>
   <DIV id="content">
   <%= yield %>
+  email: <b>contact@welcome-to-the-world.com</b>
   </DIV>
+  <div id="footer">
+    <%= render :partial => "shared/footer" %>
+  </div>
 </div>
 </body>
 </html>
