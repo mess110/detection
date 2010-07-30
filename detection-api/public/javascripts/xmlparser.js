@@ -18,16 +18,24 @@ function FaceXMLParser(req){
     return xmlDoc.getElementsByTagName("time")[0].childNodes[0].nodeValue;
   };
 
+  this.isError = function() {
+    return (xmlDoc.getElementsByTagName("description")[0] != undefined)
+  }
+
+  this.getErrorDescription = function() {
+    return xmlDoc.getElementsByTagName("description")[0].childNodes[0].nodeValue;
+  }
+
   this.getFaces = function() {
     var result = new Array();
     var myfaces = xmlDoc.getElementsByTagName("face");
     for ( i = 0; i < myfaces.length; i = i + 1)
     {
       face = myfaces[i];
-      tlx = face.getElementsByTagName("top-left-x")[0].childNodes[0].nodeValue;
-      tly = face.getElementsByTagName("top-left-y")[0].childNodes[0].nodeValue;
-      brx = face.getElementsByTagName("bottom-right-x")[0].childNodes[0].nodeValue;
-      bry = face.getElementsByTagName("bottom-right-y")[0].childNodes[0].nodeValue;
+      tlx = parseFloat(face.getElementsByTagName("top-left-x")[0].childNodes[0].nodeValue);
+      tly = parseFloat(face.getElementsByTagName("top-left-y")[0].childNodes[0].nodeValue);
+      brx = parseFloat(face.getElementsByTagName("bottom-right-x")[0].childNodes[0].nodeValue);
+      bry = parseFloat(face.getElementsByTagName("bottom-right-y")[0].childNodes[0].nodeValue);
       result[i] = new Face(tlx, tly, brx, bry);
     }
     return result;
