@@ -4,7 +4,7 @@
   to make it work. And now it does.
 */
 function reqTest() {
-  $("notice").innerHTML = "loading";
+  $("notice").innerHTML = "<img src='/images/loader.gif' />";
   scanEffect();
   var auth = encodeToken($("key").value, $("secret").value);
   var url = "/detect/new/?url=" + $("urlbox").value;
