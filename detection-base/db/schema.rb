@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(:version => 20100707134231) do
   end
 
   create_table "images", :force => true do |t|
-    t.string   "resource",   :limit => 400, :null => false
+    t.string   "resource",   :limit => 400,                    :null => false
+    t.boolean  "not_found",                 :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

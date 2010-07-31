@@ -44,7 +44,15 @@ class DetectController < SecureApplicationController
     end
 
     #if the image does not exist
-    Image.find(params[:url].to_i) rescue raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+    begin
+      img = Image.find(params[:url].to_i)
+    rescue
+      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+    end
+
+    if img.not_found
+      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+    end
 
     foo = Array.new
     regions = Region.find(:all, :params => { :image_id => params[:url]})

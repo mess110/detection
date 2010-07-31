@@ -10,7 +10,15 @@ class Image < ActiveRecord::Base
   #download the image after the resource was created in the database
   def after_save
     image_path = File.dirname(__FILE__) + '/../../public/images/cache/' + self[:id].to_s
-    download_image image_path
+    #TODO: this is a workaround. it seems normal but I think there is a better
+    #way
+    if self.not_found == false
+      download_image image_path rescue
+        begin
+          self[:not_found] = true
+          self.save
+        end
+    end
   end
 
   private
@@ -23,18 +31,18 @@ class Image < ActiveRecord::Base
     Net::HTTP.start( uri.host ) { |http|
       #check if the header file size is smaller then the maximum upload limit
       response = http.request_head( uri.request_uri )
-      file_size = response['content-length']
+      #file_size = response['content-length']
       #check file size
-      if (file_size.to_i <= MAX_FILE_SIZE)
+      #if (file_size.to_i <= MAX_FILE_SIZE.to_i)
         response = http.get( uri.request_uri )
         open(image_path, "w") { |file|
           file.write(response.body)
         } rescue raise "can not write to file"
-      else
-        raise "file size too big"
-      end
+        scan_image image_path
+      #else
+        #file too big code
+      #end
     }
-    scan_image image_path
   end
 
   def scan_image(image_path)

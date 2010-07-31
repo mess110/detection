@@ -2,7 +2,7 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
-MAX_FILE_SIZE = 1024 * 10 * 50 unless defined? MAX_FILE_SZIE
+MAX_FILE_SIZE = 1048576 unless defined? MAX_FILE_SZIE # 1MB
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
