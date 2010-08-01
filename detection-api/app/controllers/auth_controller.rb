@@ -13,7 +13,7 @@ class AuthController < ApplicationController
     user = User.find(:all, :params => { :email => params[:email]})
     if user[0]
       #if user password is correct
-      if user[0].pass == params[:pass]
+      if user[0].valid_login?(params[:pass])
         format_response(user[0])
       else
         raise Exceptions::NotMyFault.new(ERROR_INVALID_LOGIN)
