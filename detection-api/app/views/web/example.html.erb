@@ -16,7 +16,7 @@ curl -H "Content-Type: text/json" -X GET 'http://detection.myvhost.de/auth/?emai
 Initiate a new face detection request. (replace [YOUR_API_KEY], [YOUR_API_SECRET] and [YOUR_URL])
 <pre>
 <code>
-curl -u [YOUR_API_KEY]:[YOUR_API_SECRET] -H "Content-Type: text/xml" -X GET 'http://detection.myvhost.de/detect/new/?url=[YOUR_URL]' -i -L
+curl -u [YOUR_API_KEY]:[YOUR_API_SECRET] -H "Content-Type: text/xml" -X POST 'http://detection.myvhost.de/detect/new/?url=[YOUR_URL]' -i -L
 </code>
 </pre>
 
