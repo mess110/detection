@@ -11,12 +11,53 @@
 
 ActiveRecord::Schema.define(:version => 20100709155056) do
 
+  create_table "api_keys", :force => true do |t|
+    t.integer  "user_id",                                     :null => false
+    t.string   "key",        :limit => 10,                    :null => false
+    t.string   "secret",     :limit => 10,                    :null => false
+    t.boolean  "activated",                :default => false
+    t.boolean  "block",                    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "errors", :force => true do |t|
     t.integer  "api_key_id"
     t.string   "description"
     t.string   "params"
     t.text     "backtrace"
     t.boolean  "handled",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "resource",   :limit => 400,                    :null => false
+    t.boolean  "not_found",                 :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "queries", :force => true do |t|
+    t.integer  "api_key_id", :null => false
+    t.integer  "image_id",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "regions", :force => true do |t|
+    t.integer  "image_id",       :null => false
+    t.integer  "top_left_x",     :null => false
+    t.integer  "top_left_y",     :null => false
+    t.integer  "bottom_right_x", :null => false
+    t.integer  "bottom_right_y", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",      :limit => 32, :null => false
+    t.string   "pass",       :limit => 32, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
