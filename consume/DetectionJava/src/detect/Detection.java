@@ -44,8 +44,8 @@ public class Detection {
         //sun implementation
         //String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
 
-        //wikihow implementation
-        String encoding = new Base64().encode(userPassword);
+        // http://iharder.net/base64 implementation
+        String encoding = Base64.encodeBytes(userPassword.getBytes());
         con.setRequestProperty("Authorization", "Basic " + encoding);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
