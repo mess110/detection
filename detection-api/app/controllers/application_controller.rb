@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   ERROR_UNKOWN_IMAGE_FORMAT = "unkown image format"
   ERROR_SAVE_REGION         = "could not save region. you are prob hacking! damn you!!"
   ERROR_INVALID_LOGIN       = "invalid login"
+  ERROR_INVALID_API         = "invalid api key and secret combination"
   ERROR_SAVE_USER           = "error saving user"
   ERROR_REQUIRE_EMAIL       = "email parameter required"
   ERROR_REQUIRE_PASS        = "pass parameter required"
