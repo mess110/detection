@@ -4,8 +4,8 @@ include CVWrapper
 class Image < ActiveRecord::Base
 
   validates_uniqueness_of :resource
-  validates_format_of :resource, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/)+(.*\.(png|jpg|jpeg)$)/ix,
-    :message => "invalid url!"
+  validates_format_of :resource, :with => URI::regexp(%w(http https)), :message => "invalid url!"
+  validates_format_of :resource, :with => /.*\.(png|jpg|jpeg)$/i, :message => "invalid image format!"
 
   #download the image after the resource was created in the database
   def after_save
