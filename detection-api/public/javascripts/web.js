@@ -25,15 +25,15 @@ function reqTest() {
         var cat = new Image();
         cat.src = $("urlbox").value;
         cat.onload = function() {
-          offsetX = (600 - cat.width) / 2;
-          offsetY = (400 - cat.height) / 2;
-          context.drawImage(cat, offsetX, offsetY);
+          canvas.width = cat.width;
+          canvas.height = cat.height;
+          context.drawImage(cat, 0, 0);
           context.strokeStyle = "#FFA500";
           parser.getFaces().each(function(item) {
-            x = offsetX + item.tlx;
-            y = offsetY + item.tly;
-            width = offsetX + item.brx - x;
-            height = offsetY + item.bry - y;
+            x = item.tlx;
+            y = item.tly;
+            width = item.brx - x;
+            height = item.bry - y;
             context.strokeRect(x, y, width, height);
           });
         }
