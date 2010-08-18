@@ -31,7 +31,7 @@ class AuthController < ApplicationController
   private
 
   def format_response(user)
-    key = ApiKey.find(:first, :conditions => { :user_id => user.id })
+    key = ApiKey.find(:all, :params => { :user_id => user.id })[0]
 
     response = {
       :user     => user.email,

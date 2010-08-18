@@ -6,6 +6,8 @@ class ApiKeysController < ApplicationController
       @api_keys = ApiKey.find(:all, :conditions => { :key => params[:key],
                                                      :secret => params[:secret]
                                                    })
+    elsif params[:user_id]
+      @api_keys = ApiKey.find(:all, :conditions => { :user_id => params[:user_id] })
     else
       @api_keys = ApiKey.all
     end
