@@ -1,3 +1,5 @@
+require 'encrypt'
+
 class User < ActiveRecord::Base
   validates_uniqueness_of :email, :message => "email already exists"
   validates_format_of :email, :with => /^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$/,
@@ -7,22 +9,13 @@ class User < ActiveRecord::Base
     :message => "invalid. Between 4 and 32 characters, lower upper case letters and numbers"
 
   def before_save
-    cur = self[:pass]
-    self[:pass] = self.class.hash_password(cur)
+    self[:pass] = Encrypt.password(self[:pass])
   end
 
   def after_save
-    key = Generate.key
-    secret = Generate.secret
+    key = Encrypt.key
+    secret = Encrypt.secret
     id = self.id
     ApiKey.create([{ :key => key, :secret => secret, :user_id => id}])
-  end
-
-  private
-
-  #TODO make a gem for password encryption. that way it will work on clientside
-  #as well.
-  def self.hash_password(password)
-    Generate.pass_encrypt(password)
   end
 end
