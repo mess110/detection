@@ -1,19 +1,21 @@
 <%= render :partial => "warning" %>
 <center>
-<div id="main">
-<p class="warning">
-<b>Your API Key:
-<input type="text" id="key" value="" class="userinfo"/>
-Your Secret:
-<input type="text" id="secret" value="" class="userinfo"/></b>
-<br /><br />
-URL
-<input type="text" id="urlbox" value="URL to jpeg, jpg or png file" 
-  onKeyDown="if (event.keyCode == 13) reqTest();"/>
-<a href="javascript: reqTest();"><b>TEST</b></a><br />
-</p>
-<canvas id="workingOn" width="600" height="50">Your Browser is <b>not supported</b>! We recommend Mozilla Firefox, Google Chrome or Opera</canvas>
-</div>
+  <div id="main">
+    <p class="warning">
+      <b>
+        Your API Key: <input type="text" id="key" value="" class="userinfo"/>
+        Your Secret: <input type="text" id="secret" value="" class="userinfo"/>
+      </b>
+      <br /><br />
+      URL
+      <input type="text" id="urlbox" value="URL to jpeg, jpg or png file" 
+          onKeyDown="if (event.keyCode == 13) reqTest();"/>
+      <a href="javascript: reqTest();"><b>TEST</b></a><br />
+    </p>
+    <canvas id="workingOn" width="600" height="50">
+      Your Browser is <b>not supported</b>! We recommend Mozilla Firefox, Google Chrome or Opera
+    </canvas>
+  </div>
 </center>
 
 <div id="signup">
@@ -21,31 +23,31 @@ URL
     <tr>
       <td><img src="/images/grup.jpg" /></td>
       <td>
-<table align="center">
-    <tr>
-      <td>
-        Email
-        <input type="text" id="email" value=""/>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Password
-        <input type="password" id="pass" value=""/>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Retype Password
-        <input type="password" id="repass" value="" onKeyDown="if (event.keyCode == 13) auth();"/>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="javascript: auth();"><b>Authenticate</b></a>
-      </td>
-    </tr>
-  </table>
+        <table align="center">
+          <tr>
+            <td>
+              Email
+              <input type="text" id="email" value=""/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Password
+              <input type="password" id="pass" value=""/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Retype Password
+              <input type="password" id="repass" value="" onKeyDown="if (event.keyCode == 13) auth();"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javascript: auth();"><b>Authenticate</b></a>
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   </table>
