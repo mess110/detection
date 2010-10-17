@@ -1,4 +1,4 @@
-class SecureApplicationController < ApplicationController
+class Api::SecureApplicationController < ApplicationController
 
   before_filter :http_basic_authenticate
 

@@ -4,9 +4,12 @@ ActionController::Routing::Routes.draw do |map|
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
-  map.connect 'auth', :controller => 'auth'
-  map.connect 'detect/:action', :controller => 'detect'
+  map.connect 'auth', :controller => 'api/v1/auth'
+  map.connect 'detect/:action', :controller => 'api/v1/detect'
   map.connect 'web/:action', :controller => 'web'
+
+  map.connect 'api/v1/detect/:action', :controller => 'api/v1/detect'
+  map.connect 'api/v1/auth/:action', :controller => 'api/v1/auth'
 
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
