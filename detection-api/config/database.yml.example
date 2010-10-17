@@ -21,7 +21,7 @@ development:
   database: detection-api_development
   pool: 5
   username: root
-  password: 
+  password:
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -44,5 +44,5 @@ production:
   database: detection-api_production
   pool: 5
   username: root
-  password: 
+  password:
   socket: /var/run/mysqld/mysqld.sock
