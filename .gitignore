@@ -54,9 +54,11 @@ detection-gems/encrypt-gem/encrypt-0.0.1.gem
 
 # detection-base ---------------------------------------------------------------
 detection-base/public/images/cache/*
+detection-base/tmp/*
 detection-base/log/*
 detection-base/config/database.yml
 
 # detection-api ----------------------------------------------------------------
+detection-api/tmp/*
 detection-api/log/*
 detection-api/config/database.yml
