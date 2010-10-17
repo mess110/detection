@@ -7,7 +7,7 @@ function reqTest() {
   $("notice").innerHTML = "<img src='/images/loader.gif' />";
   scanEffect();
   var auth = encodeToken($("key").value, $("secret").value);
-  var url = "/detect/new/?url=" + $("urlbox").value;
+  var url = "/api/v1/detect/new/?url=" + $("urlbox").value;
   new Ajax.Request(url, {
     requestHeaders: {
       Accept: 'application/xml',
@@ -60,7 +60,7 @@ function auth() {
     return;
   }
 
-  var uri = '/auth/?email=' + $('email').value + '&pass=' + $('pass').value;
+  var uri = '/api/v1/auth/?email=' + $('email').value + '&pass=' + $('pass').value;
   new Ajax.Request(uri,
   {
     requestHeaders: {Accept: 'application/json'},
