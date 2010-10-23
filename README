@@ -12,7 +12,7 @@ Any type of feedback is useful!
 
 apart from having a db backend running, and installing the gem in the folder opencv, the headers for opencv are required.
 
-build-essential apache2 mysql-server libmysql-ruby libmysqlclient-dev
+build-essential apache2 mysql-server libmysql-ruby libmysqlclient-dev libcv-dev?? libhighgui-dev
 
 
 #opencv part
