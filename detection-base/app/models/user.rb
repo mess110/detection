@@ -7,15 +7,17 @@ class User < ActiveRecord::Base
     #TODO fix this crap
   validates_format_of :pass, :with => /^[a-zA-Z0-9!@$#%^&*,.:;'"\|\-_ ]{4,32}$/,
     :message => "invalid. Between 4 and 32 characters, lower upper case letters and numbers"
+    
+  has_one :api_key
 
   def before_save
     self[:pass] = Encrypt.password(self[:pass])
   end
 
   def after_save
-    key = Encrypt.key
-    secret = Encrypt.secret
-    id = self.id
-    ApiKey.create([{ :key => key, :secret => secret, :user_id => id}])
+    api = ApiKey.new
+    api.key = Encrypt.key
+    api.secret = Encrypt.secret
+    self.api_key = api
   end
 end
