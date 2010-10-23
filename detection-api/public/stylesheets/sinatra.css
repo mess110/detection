@@ -139,7 +139,7 @@ p.warning {
   overflow: auto;
 }
 
-p#notice {
+p.notice {
   width: 400px;
 }
 code, tt {

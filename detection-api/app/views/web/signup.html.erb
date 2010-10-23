@@ -1,26 +1,11 @@
 <%= render :partial => "warning" %>
-<%= render :partial => "main" %>
-<%= render :partial => "auth" %>
-
-<br />
-
-<script type="text/javascript">
-Element.hide('main');
-
-function scanEffect() {
-  <%=visual_effect(:fade, "workingOn", :duration => 0.5)%>
-  <%=visual_effect(:appear, "notice", :duration => 0.5)%>
-}
-
-function scanEffect2() {
-  <%=visual_effect(:appear, "workingOn", :duration => 0.5)%>
-  <%=visual_effect(:fade, "notice", :duration => 0.5)%>
-}
-
-function authEffect() {
-  //<%=visual_effect(:toggle_appear, "api", :duration => 0.5)%>
-  <%=visual_effect(:toggle_appear, "signup", :duration => 0.5)%>
-  <%=visual_effect(:toggle_appear, "main", :duration => 0.5, :delay => 0.5)%>
-}
-</script>
+<form id="auth" action="auth">
+  <center><img src="/images/grup.jpg" /></center>
+  <center><p class="warning notice">
+    <input type="text" id="email" name="email" size="11" onFocus="this.value=''" value="email"/>
+    <input type="text" id="pass" name="pass" size="11" onFocus="this.value=''; this.type='password'" value="password"/></br>
+    <input type="text" id="repass" name="repass" size="11" onFocus="this.value=''; this.type='password'" value="password again" onKeyDown="if (event.keyCode == 13) auth()"/></br>
+    <a href="javascript: auth()"><b>Authenticate</b></a>
+  </p></center>
+</form>
 

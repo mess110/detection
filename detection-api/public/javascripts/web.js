@@ -5,7 +5,6 @@
 */
 function reqTest() {
   $("notice").innerHTML = "<img src='/images/loader.gif' />";
-  scanEffect();
   var auth = encodeToken($("key").value, $("secret").value);
   var url = "/api/v1/detect/new/?url=" + $("urlbox").value;
   new Ajax.Request(url, {
@@ -38,7 +37,6 @@ function reqTest() {
           });
         }
         $("notice").innerHTML = "done";
-        scanEffect2();
       } else {
         $("notice").innerHTML = parser.getErrorDescription();
       }
@@ -50,37 +48,9 @@ function reqTest() {
 }
 
 function auth() {
-  if (($("pass").value == "") || ($("repass").value == "")) {
-    $("notice").innerHTML = "Password can not be null!";
-    return;
+  if ($('pass').value == $('repass').value) {
+    document.forms[0].submit();
+  } else {
+    $('notice').innerHTML = 'Passwords do not match';
   }
-
-  if ($("pass").value != $("repass").value) {
-    $("notice").innerHTML = "Passwords do not match!";
-    return;
-  }
-
-  var uri = '/api/v1/auth/?email=' + $('email').value + '&pass=' + $('pass').value;
-  new Ajax.Request(uri,
-  {
-    requestHeaders: {Accept: 'application/json'},
-    method:'get',
-    onSuccess: function(transport){
-      var response = transport.responseText;
-      var jsonResponse = response.evalJSON();
-      if (jsonResponse.description == undefined)
-      {
-        $("notice").innerHTML = "If you want, you can test the API by clicking TEST and using your API Key and Secret! (not user and pass)";
-        $("key").value = jsonResponse.api_key.key;
-        $("secret").value = jsonResponse.api_key.secret;
-
-        authEffect();
-      } else {
-        $("notice").innerHTML = jsonResponse.description;
-      }
-    },
-    onFailure: function(){
-      $("notice").innerHTML = response;
-    }
-  });
 }
