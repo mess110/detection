@@ -54,10 +54,10 @@ class Api::V1::DetectController < Api::SecureApplicationController
       raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
     end
 
-    foo = Array.new
+    faces = Array.new
     regions = Region.find(:all, :params => { :image_id => params[:url]})
     regions.each do |region|
-      foo << {
+      faces << {
           :top_left_x       => region.top_left_x,
           :top_left_y       => region.top_left_y,
           :bottom_right_x   => region.bottom_right_x,
@@ -68,7 +68,7 @@ class Api::V1::DetectController < Api::SecureApplicationController
     response = {
       :query_id       => params[:url].to_i,
       :time           => Time.now,
-      :faces          => foo
+      :faces          => faces
     }
 
     respond_to do |format|
