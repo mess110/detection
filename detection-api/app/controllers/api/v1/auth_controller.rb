@@ -14,14 +14,14 @@ class Api::V1::AuthController < ApplicationController
     if user[0]
       #if user password is correct
       if user[0].password?(params[:pass])
-        format_response(user[0])
+        offer_response(format_response(user[0]))
       else
         raise Exceptions::NotMyFault.new(ERROR_INVALID_LOGIN)
       end
     else
       user = User.new(:email => params[:email], :pass => params[:pass])
       if user.save
-        format_response(user)
+        offer_response(format_response(user))
       else
         raise Exceptions::NotMyFault.new(user.errors.full_messages[0])
       end
@@ -40,12 +40,5 @@ class Api::V1::AuthController < ApplicationController
         :secret   => key.secret
       }
     }
-    
-    respond_to do |format|
-      #format.html { render :xml   => response }
-      format.xml  { render :xml   => response }
-      format.json { render :json  => response }
-    end
-    #render :xml => response
   end
 end

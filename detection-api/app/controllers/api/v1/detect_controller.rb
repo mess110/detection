@@ -70,12 +70,6 @@ class Api::V1::DetectController < Api::SecureApplicationController
       :time           => Time.now,
       :faces          => faces
     }
-
-    respond_to do |format|
-      #format.html { render :xml   => response }
-      format.xml  { render :xml   => response }
-      format.json { render :json  => response }
-    end
-    #render :xml => response
+    offer_response(response)
   end
 end
