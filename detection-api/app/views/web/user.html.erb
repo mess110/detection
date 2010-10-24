@@ -9,7 +9,7 @@
       <span style="float: right; top: 0; right: 0;"><a href="logout">logout</a></span>
       <br /><br />
       URL
-      <input type="text" id="urlbox" value="URL to jpeg, jpg or png" onFocus="this.value='';"
+      <input type="text" id="urlbox" value="URL to jpeg, jpg or png" onFocus="clearInput(this);"
           onKeyDown="if (event.keyCode == 13) reqTest();"/>
       <a href="javascript: reqTest();"><b>TEST</b></a><br />
     </p>

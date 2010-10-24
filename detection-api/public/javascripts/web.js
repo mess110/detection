@@ -54,3 +54,10 @@ function auth() {
     $('notice').innerHTML = 'Passwords do not match';
   }
 }
+
+function clearInput(element) {
+  content = element.value;
+  if ((content.substring(0,4) != 'http') || (content.substring(0,3) != 'ftp')) {
+    element.value = '';
+  }
+}
