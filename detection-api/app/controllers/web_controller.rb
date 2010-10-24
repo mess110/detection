@@ -43,7 +43,7 @@ class WebController < ApplicationController
       #if user password is correct
       if user[0].password?(params[:pass])
         session[:user_id] = user[0].id.to_i
-        self.notice = 'Login succesful'
+        self.notice = 'Login successful'
         redirect_to :action => :user
       else
         self.notice = 'Wrong user/pass combination'
