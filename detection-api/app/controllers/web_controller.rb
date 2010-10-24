@@ -17,12 +17,13 @@ class WebController < ApplicationController
   
   def user
     if !session[:user_id]
-      redirect_to :action => :signup
+      redirect_to :action => 'signup'
+    else
+      if !notice
+        self.notice = "Check out the INFO page for examples"
+      end
+      @user = User.find(session[:user_id].to_i)
     end
-    if !notice
-      self.notice = "Check out the INFO page for examples"
-    end
-    @user = User.find(session[:user_id].to_i)
   end
   
   def logout
