@@ -55,8 +55,7 @@ class Api::V1::DetectController < Api::SecureApplicationController
     end
 
     faces = Array.new
-    regions = Region.find(:all, :params => { :image_id => params[:url]})
-    regions.each do |region|
+    img.regions.each do |region|
       faces << {
           :top_left_x       => region.top_left_x,
           :top_left_y       => region.top_left_y,

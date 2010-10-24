@@ -1,3 +1,3 @@
 class Region < ActiveRecord::Base
-  #this is not controlled by the user. it is just displayed
+  belongs_to :image
 end

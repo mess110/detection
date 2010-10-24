@@ -10,7 +10,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @images }
+      format.xml  { render :xml => @images.to_xml( :include => :regions ) }
     end
   end
 
@@ -21,7 +21,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @image }
+      format.xml  { render :xml => @image.to_xml( :include => :regions ) }
     end
   end
 

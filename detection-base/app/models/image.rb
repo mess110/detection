@@ -3,6 +3,8 @@ include CVWrapper
 
 class Image < ActiveRecord::Base
 
+  has_many :regions
+
   validates_uniqueness_of :resource
   validates_format_of :resource, :with => URI::regexp(%w(http https)), :message => "invalid url!"
   validates_format_of :resource, :with => /.*\.(png|jpg|jpeg)$/i, :message => "invalid image format!"
@@ -46,16 +48,14 @@ class Image < ActiveRecord::Base
   end
 
   def scan_image(image_path)
-    #file = 'public/images/cache/' + self[:id].to_s
-    foo = Detector.find(image_path)
-    foo[:regions].each do |region|
-      r = Region.new
-      r.image_id = self[:id]
-      r.top_left_x = region[:top_left_x]
-      r.top_left_y = region[:top_left_y]
-      r.bottom_right_x = region[:bottom_right_x]
-      r.bottom_right_y = region[:bottom_right_y]
-      r.save
+    detector_results = Detector.find(image_path)
+    detector_results[:regions].each do |region|
+      self.regions << Region.new({
+                        :top_left_x     => region[:top_left_x],
+                        :top_left_y     => region[:top_left_y],
+                        :bottom_right_x => region[:bottom_right_x],
+                        :bottom_right_y => region[:bottom_right_y]
+                      })
     end
   end
 end
