@@ -10,18 +10,20 @@ class Api::V1::AuthController < ApplicationController
     end
 
     #do a lot of security checks
-    user = User.find(:all, :params => { :email => params[:email]})
-    if user[0]
+    user = User.find(:first, :params => { :email => params[:email]})
+    if user
       #if user password is correct
-      if user[0].password?(params[:pass])
-        offer_response(format_response(user[0]))
+      if user.password?(params[:pass])
+        response = format_response(user)
+        render :partial => "api/v1/auth.xml.builder", :locals => { :response => response }
       else
         raise Exceptions::NotMyFault.new(ERROR_INVALID_LOGIN)
       end
     else
       user = User.new(:email => params[:email], :pass => params[:pass])
       if user.save
-        offer_response(format_response(user))
+        response = format_response(user)
+        render :partial => "api/v1/auth.xml.builder", :locals => { :response => response }
       else
         raise Exceptions::NotMyFault.new(user.errors.full_messages[0])
       end
@@ -31,14 +33,11 @@ class Api::V1::AuthController < ApplicationController
   private
 
   def format_response(user)
-    key = ApiKey.find(:all, :params => { :user_id => user.id })[0]
-
-    response = {
-      :user     => user.email,
-      :api_key  => {
-        :key      => key.key,
-        :secret   => key.secret
-      }
+    key = user.api_key
+    {
+      :email    => user.email,
+      :key      => key.key,
+      :secret   => key.secret
     }
   end
 end

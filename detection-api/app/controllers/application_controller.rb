@@ -23,13 +23,6 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
-  
-  def offer_response response
-    respond_to do |format|
-      format.xml  { render :xml   => response }
-      format.json { render :json  => response }
-    end    
-  end
 
   private
 
@@ -43,11 +36,6 @@ class ApplicationController < ActionController::Base
       :time         => Time.now,
       :description  => description,
     }
-
-    respond_to do |format|
-      format.html { render :xml   => err }
-      format.xml  { render :xml   => err }
-      format.json { render :json  => err }
-    end
+    render :partial => "api/v1/error.xml.builder", :locals => { :response => err }
   end
 end

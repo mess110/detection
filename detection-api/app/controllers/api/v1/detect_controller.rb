@@ -69,6 +69,6 @@ class Api::V1::DetectController < Api::SecureApplicationController
       :time           => Time.now,
       :faces          => faces
     }
-    offer_response(response)
+    render :partial => "api/v1/detect.xml.builder", :locals => { :response => response }
   end
 end
