@@ -171,6 +171,11 @@ input#urlbox
   width: 90%;
 }
 
+input.login
+{
+  width: 100px;
+}
+
 input.userinfo {
   background-color: #f4f5f5;
   border: 0px;

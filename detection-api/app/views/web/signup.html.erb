@@ -2,9 +2,9 @@
 <form id="auth" action="auth">
   <center><img src="/images/grup.jpg" /></center>
   <center><p class="warning notice">
-    <input type="text" id="email" name="email" size="11" onFocus="this.value=''" value="email"/>
-    <input type="text" id="pass" name="pass" size="11" onFocus="this.value=''; this.type='password'" value="password"/></br>
-    <input type="text" id="repass" name="repass" size="11" onFocus="this.value=''; this.type='password'" value="password again" onKeyDown="if (event.keyCode == 13) auth()"/></br>
+    <input type="text" class="login" id="email" name="email" size="11" onFocus="this.value=''" value="email"/>
+    <input type="text" class="login" id="pass" name="pass" size="11" onFocus="this.value=''; this.type='password'" value="password"/>
+    <input type="text" class="login" id="repass" name="repass" size="11" onFocus="this.value=''; this.type='password'" value="password again" onKeyDown="if (event.keyCode == 13) auth()"/></br>
     <a href="javascript: auth()"><b>Authenticate</b></a>
   </p></center>
 </form>
