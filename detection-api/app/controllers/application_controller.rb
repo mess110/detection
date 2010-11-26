@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   ERROR_INVALID_API         = "invalid api key and secret combination"
   ERROR_REQUIRE_EMAIL       = "email parameter required"
   ERROR_REQUIRE_PASS        = "pass parameter required"
-  ERROR_SAVE_QUERY          = "error saving query"
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details

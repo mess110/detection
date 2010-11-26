@@ -12,14 +12,7 @@ class Api::V1::DetectController < Api::SecureApplicationController
       image = Image.create(:resource => params[:url])
     end
 
-    q = Query.new
-    q.api_key_id = session[:key_id].to_i
-    q.image_id = image.id
-    if !q.save
-      # TODO the user shouldn't see this..
-      render_error(ERROR_SAVE_QUERY) and return
-    end
-
+    Query.create(:api_key_id => session[:key_id].to_i, :image_id => image.id)
     redirect_to :action => 'show', :params => { :url => image.id }
   end
 
