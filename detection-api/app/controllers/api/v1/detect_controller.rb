@@ -24,17 +24,10 @@ class Api::V1::DetectController < Api::SecureApplicationController
   end
 
   def show
-    if !(params[:url] && !params[:url].blank?)
+    if !(params[:url] && !params[:url].blank?) || !(params[:url] =~ VALID_FORMAT)
       render_error(ERROR_INVALID_URL) and return
     end
 
-    #if it is a valid format (number)
-    #since this is used to search in the model this will be checked
-    if !(params[:url] =~ VALID_FORMAT)
-        render_error(ERROR_INVALID_URL) and return
-    end
-
-    #if the image does not exist
     begin
       img = Image.find(params[:url].to_i)
     rescue
