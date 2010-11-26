@@ -67,7 +67,6 @@ class Api::V1::DetectController < Api::SecureApplicationController
 
     response = {
       :query_id       => params[:url].to_i,
-      :time           => Time.now,
       :faces          => faces
     }
     render :partial => "api/v1/detect.xml.builder", :locals => { :response => response }
