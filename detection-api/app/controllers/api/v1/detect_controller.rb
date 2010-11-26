@@ -55,7 +55,7 @@ class Api::V1::DetectController < Api::SecureApplicationController
       render_error(ERROR_INVALID_URL) and return
     end
 
-    faces = Array.new
+    faces = []
     img.regions.each do |region|
       faces << {
           :top_left_x       => region.top_left_x,
