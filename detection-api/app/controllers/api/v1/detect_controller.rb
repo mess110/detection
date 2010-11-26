@@ -3,24 +3,15 @@ class Api::V1::DetectController < Api::SecureApplicationController
   VALID_FORMAT = /^\d{1,7}$/
 
   def new
-    #do security checks
     if (!params[:url] || params[:url].blank?)
       render_error(ERROR_INVALID_URL) and return
     end
 
-    #prepare the image
-    image = Image.new
-    cache_images = Image.find(:all, :params => { :resource => params[:url]})
-    if cache_images.size == 0
-      image.resource = params[:url]
-      if !image.save
-        render_error(ERROR_INVALID_URL) and return
-      end
-    else
-      image = cache_images[0]
+    image = Image.find(:first, :params => { :resource => params[:url]})
+    if image.nil?
+      image = Image.create(:resource => params[:url])
     end
 
-    #prepare the query
     q = Query.new
     q.api_key_id = session[:key_id].to_i
     q.image_id = image.id
@@ -33,7 +24,6 @@ class Api::V1::DetectController < Api::SecureApplicationController
   end
 
   def show
-    #do security checks
     if !(params[:url] && !params[:url].blank?)
       render_error(ERROR_INVALID_URL) and return
     end
