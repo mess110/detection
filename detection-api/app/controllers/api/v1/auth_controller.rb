@@ -2,11 +2,11 @@ class Api::V1::AuthController < ApplicationController
 
   def index
     if !(params[:email] && !params[:email].blank?)
-      raise Exceptions::NotMyFault.new(ERROR_REQUIRE_EMAIL)
+      render_error(ERROR_REQUIRE_EMAIL) and return
     end
 
     if !(params[:pass] && !params[:pass].blank?)
-      raise Exceptions::NotMyFault.new(ERROR_REQUIRE_PASS)
+      render_error(ERROR_REQUIRE_PASS) and return
     end
 
     #do a lot of security checks
@@ -17,7 +17,7 @@ class Api::V1::AuthController < ApplicationController
         response = format_response(user)
         render :partial => "api/v1/auth.xml.builder", :locals => { :response => response }
       else
-        raise Exceptions::NotMyFault.new(ERROR_INVALID_LOGIN)
+        render_error(ERROR_INVALID_LOGIN) and return
       end
     else
       user = User.new(:email => params[:email], :pass => params[:pass])
@@ -25,7 +25,7 @@ class Api::V1::AuthController < ApplicationController
         response = format_response(user)
         render :partial => "api/v1/auth.xml.builder", :locals => { :response => response }
       else
-        raise Exceptions::NotMyFault.new(user.errors.full_messages[0])
+        render_error(user.errors.full_messages[0]) and return
       end
     end
   end

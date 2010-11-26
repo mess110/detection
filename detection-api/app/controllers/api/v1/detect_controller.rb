@@ -5,7 +5,7 @@ class Api::V1::DetectController < Api::SecureApplicationController
   def new
     #do security checks
     if (!params[:url] || params[:url].blank?)
-      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+      render_error(ERROR_INVALID_URL) and return
     end
 
     #prepare the image
@@ -14,7 +14,7 @@ class Api::V1::DetectController < Api::SecureApplicationController
     if cache_images.size == 0
       image.resource = params[:url]
       if !image.save
-        raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+        render_error(ERROR_INVALID_URL) and return
       end
     else
       image = cache_images[0]
@@ -25,7 +25,8 @@ class Api::V1::DetectController < Api::SecureApplicationController
     q.api_key_id = session[:key_id].to_i
     q.image_id = image.id
     if !q.save
-      raise Exceptions::NotMyFault.new(ERROR_SAVE_QUERY)
+      # TODO the user shouldn't see this..
+      render_error(ERROR_SAVE_QUERY) and return
     end
 
     redirect_to :action => 'show', :params => { :url => image.id }
@@ -34,24 +35,24 @@ class Api::V1::DetectController < Api::SecureApplicationController
   def show
     #do security checks
     if !(params[:url] && !params[:url].blank?)
-      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+      render_error(ERROR_INVALID_URL) and return
     end
 
     #if it is a valid format (number)
     #since this is used to search in the model this will be checked
     if !(params[:url] =~ VALID_FORMAT)
-      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+        render_error(ERROR_INVALID_URL) and return
     end
 
     #if the image does not exist
     begin
       img = Image.find(params[:url].to_i)
     rescue
-      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+      render_error(ERROR_INVALID_URL) and return
     end
 
     if img.not_found
-      raise Exceptions::NotMyFault.new(ERROR_INVALID_URL)
+      render_error(ERROR_INVALID_URL) and return
     end
 
     faces = Array.new

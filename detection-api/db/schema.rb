@@ -9,16 +9,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100709155056) do
-
-  create_table "errors", :force => true do |t|
-    t.integer  "api_key_id"
-    t.string   "description"
-    t.string   "params"
-    t.text     "backtrace"
-    t.boolean  "handled",     :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 0) do
 
 end

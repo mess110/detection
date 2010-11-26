@@ -1,4 +1,3 @@
 xml.query do
-  xml.time response[:time]
-  xml.description response[:description]
+  xml.description message
 end

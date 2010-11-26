@@ -16,7 +16,7 @@ class Api::SecureApplicationController < ApplicationController
           #raise 'banned! contact admin!'
         #end
       else
-        raise Exceptions::NotMyFault.new(ERROR_INVALID_API)
+        render_error(ERROR_INVALID_API) and return
       end
     end
   end
