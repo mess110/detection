@@ -32,10 +32,10 @@ function FaceXMLParser(req){
     for ( i = 0; i < myfaces.length; i = i + 1)
     {
       face = myfaces[i];
-      tlx = parseFloat(face.getElementsByTagName("top-left-x")[0].childNodes[0].nodeValue);
-      tly = parseFloat(face.getElementsByTagName("top-left-y")[0].childNodes[0].nodeValue);
-      brx = parseFloat(face.getElementsByTagName("bottom-right-x")[0].childNodes[0].nodeValue);
-      bry = parseFloat(face.getElementsByTagName("bottom-right-y")[0].childNodes[0].nodeValue);
+      tlx = parseFloat(face.getAttribute("top_left_x"));
+      tly = parseFloat(face.getAttribute("top_left_y"));
+      brx = parseFloat(face.getAttribute("bottom_right_x"));
+      bry = parseFloat(face.getAttribute("bottom_right_y"));
       result[i] = new Face(tlx, tly, brx, bry);
     }
     return result;
