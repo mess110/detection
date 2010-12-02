@@ -32,6 +32,17 @@ class WebController < ApplicationController
   end
 
   def example
+    @auth_response = {
+      :email  => "your-email@is-here.com",
+      :key    => "THIS_IS_YOUR_KEY",
+      :secret => "THIS_IS_YOUR_SECRET"  
+    }
+    faces = [{:top_left_x => 10, :top_left_y => 20, :bottom_right_x => 70, :bottom_right_y => 80},
+             {:top_left_x => 60, :top_left_y => 10, :bottom_right_x => 80, :bottom_right_y => 90}]
+    @detect_response = {
+      :query_id => 10,
+      :faces    => faces
+    }
   end
 
   def thanks
