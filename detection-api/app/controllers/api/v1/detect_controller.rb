@@ -7,9 +7,10 @@ class Api::V1::DetectController < Api::SecureApplicationController
       render_error(ERROR_INVALID_URL) and return
     end
 
-    image = Image.find(:first, :params => { :resource => params[:url]})
-    if image.nil?
-      image = Image.create(:resource => params[:url])
+    image = Image.find_or_create(params[:url])
+  
+    if !image.valid?
+      render_error(ERROR_INVALID_URL) and return
     end
 
     Query.create(:api_key_id => session[:key_id].to_i, :image_id => image.id)
