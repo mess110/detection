@@ -47,7 +47,10 @@ class WebController < ApplicationController
 
   def thanks
   end
-  
+
+  # there is no reason why this method should be here. I think there was one
+  # in the past but it was probably stupid. Use the API for registring and
+  # handeling everything. don't duplicate code!!
   def auth
     user = User.find(:all, :params => { :email => params[:email]})
     if user[0]
