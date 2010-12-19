@@ -62,3 +62,7 @@ detection-base/config/database.yml
 detection-api/tmp/*
 detection-api/log/*
 detection-api/config/database.yml
+
+# detection-runner -------------------------------------------------------------
+detection-runner/config/database.yml
+detection-runner/Gemfile.lock
