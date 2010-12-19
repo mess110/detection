@@ -1,7 +1,7 @@
 class CreateImages < ActiveRecord::Migration
   def self.up
     create_table :images do |t|
-
+      t.string :url
       t.timestamps
     end
   end
