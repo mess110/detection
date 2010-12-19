@@ -52,6 +52,8 @@ detection-gems/ruby-opencv/Makefile
 detection-gems/cvwrapper-gem/cvwrapper-0.0.1.gem
 detection-gems/encrypt-gem/encrypt-0.0.1.gem
 
+detection-gems/light-opencv-wrapper/pkg/*
+
 # detection-base ---------------------------------------------------------------
 detection-base/public/images/cache/*
 detection-base/tmp/*
@@ -66,3 +68,4 @@ detection-api/config/database.yml
 # detection-runner -------------------------------------------------------------
 detection-runner/config/database.yml
 detection-runner/Gemfile.lock
+detection-runner/public/images/*
