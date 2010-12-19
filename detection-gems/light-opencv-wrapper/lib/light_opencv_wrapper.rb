@@ -20,7 +20,7 @@ module LightOpencvWrapper
 
     def self.format light_opencv_array
       regions = []
-      0.step(light_opencv_array.size, 4) { |idx|
+      0.step(light_opencv_array.size - 1, 4) { |idx|
         regions << {
           :tlx => light_opencv_array[idx + 0],
           :tly => light_opencv_array[idx + 2],
