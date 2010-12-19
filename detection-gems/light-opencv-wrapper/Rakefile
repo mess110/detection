@@ -1,0 +1,26 @@
+require 'rake'
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |s|
+    s.name        = %q{light_opencv_wrapper}
+    s.summary     = %q{Finds coordinates of faces in an image.}
+    s.description = %q{Nothing yet}
+
+    s.files        = ["lib/haarcascade_frontalface_alt_tree.xml","lib/light_opencv_wrapper.rb"]
+    s.require_path = 'lib'
+    s.test_files   = Dir[*['test/*_test.rb']]
+
+    s.has_rdoc         = false
+
+    s.author = 'Cristian Mircea Messel'
+    s.email = ''
+
+    s.homepage = "https://github.com/mess110/detection"
+
+    s.platform = Gem::Platform::RUBY
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
