@@ -69,3 +69,9 @@ detection-api/config/database.yml
 detection-runner/config/database.yml
 detection-runner/Gemfile.lock
 detection-runner/public/images/*
+*.o
+*.so
+detection-gems/light-opencv-wrapper/Makefile
+detection-gems/light-opencv-wrapper/mkmf.log
+
+*~
