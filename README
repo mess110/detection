@@ -1,29 +1,14 @@
-beta
+== License
 
-BSD Licence. See licence file :)
+BSD License
 
 You can try the API at http://detection.myvhost.de/
 
-Any type of feedback is useful!
+== Install
 
+1. Install ruby1.9.1 and git
+2. run the setup script with sudo rights
 
+== How it works
 
-
-
-apart from having a db backend running, and installing the gem in the folder opencv, the headers for opencv are required.
-
-build-essential apache2 mysql-server libmysql-ruby libmysqlclient-dev libcv-dev?? libhighgui-dev
-
-
-#opencv part
-mkdir opencv
-cd opencv
-svn co https://opencvlibrary.svn.sourceforge.net/svnroot/opencvlibrary/tags/latest_tested_snapshot
-mkdir release
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D BUILD_PYTHON_SUPPORT=ON ..
-make
-sudo make install
-sudo ldconfig -v
-
-
-TODO: update script to do this.
+TODO
