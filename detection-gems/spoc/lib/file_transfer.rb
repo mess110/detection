@@ -7,8 +7,8 @@ module Spoc
 
     FILE_TRANSFER_COMPLETE = "it_ain't_over_till_the_fat_lady_sings\n"
 
-    def self.server(port, image_dir)
-      FileUtils.mkdir(image_dir) unless File.exists? image_dir
+    def self.server(port, dir)
+      FileUtils.mkdir(dir) unless File.exists? dir
 
       server = TCPServer.open(port)
       loop {
@@ -21,7 +21,7 @@ module Spoc
               end
               client_file += line
             end
-            file_path = get_file_path(image_dir)
+            file_path = get_file_path(dir)
             Spoc::FileConvert.decode(client_file, file_path)
           	client.puts file_path
           ensure
@@ -47,8 +47,8 @@ module Spoc
 
   private
   
-  def self.get_file_path(image_dir)
-    File.join(image_dir, Digest::MD5.hexdigest(Time.now.to_s))
+  def self.get_file_path(dir)
+    File.join(dir, Digest::MD5.hexdigest(Time.now.to_s))
   end
   end
 end
