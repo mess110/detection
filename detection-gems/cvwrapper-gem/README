@@ -1,7 +1,0 @@
-GPL
-
-ruby1.8.7
-
-Depends on opencv gem, but if you can not install it, installing the opencv
-library will suffice.
-

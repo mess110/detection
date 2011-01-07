@@ -1,7 +1,0 @@
-ruby 1.8.7
-
-ruby app.rb to test the program and for example usage.
-
-Don't forget to add require 'rubygems' if you use ruby version lower than 1.9
-
-GPL
