@@ -1,7 +1,7 @@
 require "light_opencv_wrapper"
 
 class Image < ActiveRecord::Base
-  has_many :query
+  has_many :queries
   has_many :regions
 
   validates_uniqueness_of :url
@@ -17,6 +17,7 @@ class Image < ActiveRecord::Base
   private
 
   def download_image(url)
+    logger.info "INFO: Downloading image from #{url}"
     ActiveRecord::Base.transaction do
       uri = URI.parse(url)
       image_path = RunnerSettings.image_store_path + "/#{id}"
@@ -31,6 +32,7 @@ class Image < ActiveRecord::Base
   end
 
   def scan_image image_id, image_path
+    logger.info "INFO: Scanning #{image_id} with path #{image_path}"
     regions = LightOpencvWrapper::Detector.find(image_path)
     regions.each do |r|
       Region.create!(:image_id => id, :tlx => r[:tlx], :tly => r[:tly], :brx => r[:brx], :bry => r[:bry])
