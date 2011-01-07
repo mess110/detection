@@ -8,7 +8,7 @@ class Scheduler
     # assing the image to the runner and fire away
     i.runner_id = r.id
     i.save!
-    RestClient.get "http://#{r.host}:#{r.port}/detect", { :params => { :url => i.url } }
+    RestClient.get "http://#{r.host}:#{r.port}/detect", { :params => { :image_id => i.id, :url => i.url } }
     # return estimate running time
     return 42
   end
