@@ -1,7 +1,7 @@
 DETECTION_DIRECTORY=$(cd `dirname $0` && pwd)
 
 # installing dependecies
-sudo apt-get install git subversion cmake build-essential
+sudo apt-get install git subversion cmake build-essential libgtk2.0-dev libjpeg8-dev pkg-config
 
 # setting up opencv
 cd ~/Public
@@ -10,6 +10,7 @@ cd opencv
 svn co https://opencvlibrary.svn.sourceforge.net/svnroot/opencvlibrary/tags/latest_tested_snapshot
 cd latest_tested_snapshot/opencv
 mkdir release
+cd release
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
 make
 sudo make install
