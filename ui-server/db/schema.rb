@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110107194829) do
+ActiveRecord::Schema.define(:version => 20110107202655) do
 
   create_table "images", :force => true do |t|
     t.string   "url"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20110107194829) do
     t.boolean  "failed",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "runner_id"
   end
 
   create_table "regions", :force => true do |t|
