@@ -1,6 +1,8 @@
 require 'socket'
 require 'digest/md5'
 require 'fileutils'
+require 'open-uri'
+require 'net/http'
 
 module Spoc
   class FileTransfer
@@ -8,7 +10,7 @@ module Spoc
     FILE_TRANSFER_COMPLETE = "it_ain't_over_till_the_fat_lady_sings\n"
 
     def self.server(port, dir)
-      FileUtils.mkdir(dir) unless File.exists? dir
+      create_dir(dir)
 
       server = TCPServer.open(port)
       loop {
@@ -44,11 +46,30 @@ module Spoc
         s.close
       end
     end
+    
+    def self.download_file(url, dir)
+      create_dir(dir)
 
-  private
-  
-  def self.get_file_path(dir)
-    File.join(dir, Digest::MD5.hexdigest(Time.now.to_s))
-  end
+      uri = URI.parse(url)
+      file_path = get_file_path(dir)
+      Net::HTTP.start( uri.host ) { |http|
+        response = http.get( uri.request_uri )
+        open(file_path, "wb") { |file|
+          file.write(response.body)
+        }
+      }
+      file_path
+    end
+
+    private
+    
+    def self.get_file_path(dir)
+      File.join(dir, Digest::MD5.hexdigest(Time.now.to_s))
+    end
+    
+    def self.create_dir(dir)
+      FileUtils.mkdir(dir) unless File.exists? dir
+    end
+
   end
 end
