@@ -27,7 +27,7 @@ module Spoc
             Spoc::FileConvert.decode(client_file, file_path)
           	client.puts file_path
           ensure
-            client.close
+            client.close unless client.nil?
           end
         end
       }
@@ -43,7 +43,7 @@ module Spoc
           puts line
         end
       ensure
-        s.close
+        s.close unless s.nil?
       end
     end
     
