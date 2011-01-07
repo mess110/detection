@@ -1,0 +1,2 @@
+module Spoc
+end

@@ -1,0 +1,26 @@
+require 'rake'
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |s|
+    s.name        = %q{spoc}
+    s.summary     = %q{Single Point Of Contact Mr. Spok!}
+    s.description = %q{Nothing yet}
+
+    s.files        = ["lib/haarcascade_frontalface_alt_tree.xml","lib/*.rb"]
+    s.require_path = 'lib'
+    s.test_files   = Dir[*['test/*_test.rb']]
+
+    s.has_rdoc         = false
+
+    s.author = 'Cristian Mircea Messel'
+    s.email = 'mess110@gmail.com'
+
+    s.homepage = "https://github.com/mess110/detection"
+
+    s.platform = Gem::Platform::RUBY
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
