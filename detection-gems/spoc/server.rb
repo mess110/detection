@@ -3,4 +3,4 @@
 #require File.join(File.dirname($0), 'lib/file_transfer.rb')
 require 'spoc'
 
-Spoc::FileTransfer.server(2000)
+Spoc::FileTransfer.server(2000, "images")
