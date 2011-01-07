@@ -18,5 +18,5 @@ end
 
 get '/detect' do
   system("ruby1.9.1 daemons.rb #{params[:image_id]} #{params[:url].shellescape} &")
-  return "200"
+  '42'
 end

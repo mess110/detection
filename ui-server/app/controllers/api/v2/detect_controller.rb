@@ -3,7 +3,7 @@ class Api::V2::DetectController < ApplicationController
     if request.get?
       render_api_error if params[:url].nil?
       @img = Image.create!(:url => params[:url])
-      @eta = Scheduler.process_queue
+      @eta = Scheduler.process_queue @img.id
       render :xml => "new.builder" && return
     elsif request.post?
     else

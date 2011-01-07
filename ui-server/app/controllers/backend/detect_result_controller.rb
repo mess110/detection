@@ -5,6 +5,7 @@ class Backend::DetectResultController < ApplicationController
     regions.each do |r|
       Region.create!(:image_id => image_id, :tlx => r[:tlx], :tly => r[:tly], :brx => r[:brx], :bry => r[:bry])
     end
+    Image.find(image_id).complete!
     render :text => "200"
   end
 end
