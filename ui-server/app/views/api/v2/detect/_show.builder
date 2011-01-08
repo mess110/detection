@@ -1,5 +1,12 @@
 xml.image do
-  xml.id 1
-  xml.estimated_time_arrival 2
-  xml.url "url"
+  xml.id @img.id
+  xml.url @img.url
+  xml.regions do
+    @img.regions.each do |r|
+      xml.region( :top_left_x     => r[:tlx],
+                  :top_left_y     => r[:tly],
+                  :bottom_right_x => r[:brx],
+                  :bottom_right_y => r[:bry])
+    end
+  end
 end

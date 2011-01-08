@@ -6,4 +6,14 @@ class Image < ActiveRecord::Base
     self.completed = true
     self.save!
   end
+
+  def status
+    if self.completed
+      return "completed"
+    elsif self.failed
+      return "failed"
+    else
+      return "processing"
+    end
+  end
 end
