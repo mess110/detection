@@ -1,0 +1,5 @@
+# List gems to bundle here:
+gem 'sinatra'
+gem 'rest-client'
+gem 'daemons'
+gem 'spoc'

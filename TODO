@@ -1,3 +1,10 @@
 Logging
 Exceptions
 Testcoverage
+
+
+  validates_uniqueness_of :url
+  validates_format_of :url,
+                :with => URI::regexp(%w(http https)), :message => "invalid url"
+  validates_format_of :url,
+                :with => /.*\.(jpg|jpeg)$/i, :message => "invalid image format"
