@@ -1,0 +1,13 @@
+<center>
+  <div id="main">
+    <p class="warning">
+      URL
+      <input type="text" id="urlbox" value="URL to jpeg, jpg or png" onFocus="clearInput(this);"
+          onKeyDown="if (event.keyCode == 13) reqTest();"/>
+      <a href="javascript: reqTest();"><b>TEST</b></a><br />
+    </p>
+    <canvas id="detection" width="600" height="50">
+      Your Browser is <b>not supported</b>! We recommend Chromium, Mozilla Firefox, Google Chrome or Opera
+    </canvas>
+  </div>
+</center>
