@@ -1,0 +1,21 @@
+<h3>API Overview</h3>
+<p>Frontal face detection webservice for your computer vision needs. Handles the complex process of detecting the position of faces in images completely transparent to the user. Since it is done server-side, the user can focus on developing the rich applications dreamed with one less thing to worry about.</p>
+<p>This service is <b>free</b> and it will stay <b>free</b>! If you want you can donate to help with hosting/beer fees. (student life is fun)</p>
+<h3>Examples usage - using <a href="http://curl.haxx.se/">curl</a></h3>
+<br />
+<p><b>detect request</b> - initiates a new face detection request</p>
+<pre><code>
+curl -X GET ''
+
+<b>Example response:</b>
+<%= render :partial => "api/v2/detect/new.builder" %>
+</code></pre>
+<p><b>show request</b> - returns the coordinates of faces from the detect request</p>
+<pre><code>
+curl -X GET ''
+
+<b>Example response:</b>
+<%= render :partial => "api/v2/detect/show.builder" %>
+</code></pre>
+
+<p>Any questions?</p>
