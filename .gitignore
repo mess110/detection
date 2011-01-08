@@ -2,6 +2,7 @@ spoc/pkg/*
 spoc/output.jpg
 ui-server/Gemfile.lock
 ui-server/config/database.yml
+runner/settings.rb
 *.o
 *.so
 *~
