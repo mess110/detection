@@ -6,6 +6,8 @@ class Api::V2::DetectController < ApplicationController
       @eta = Scheduler.process_queue @img.id
       render :partial => "new.builder" && return
     elsif request.post?
+      # uploading files will be handled with post request
+      render_api_error
     else
       render_api_error
     end
