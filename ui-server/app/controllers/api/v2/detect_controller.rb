@@ -9,7 +9,7 @@ class Api::V2::DetectController < ApplicationController
       if @img = Image.find_by_url(params[:url])
         @eta = 0
       else
-        @img = Image.create!(:url => params[:url])
+        @img = Image.create(:url => params[:url])
         
         if @img.errors.count > 0
           render_api_error and return
