@@ -1,7 +1,11 @@
 class Image < ActiveRecord::Base
   has_many :regions
   belongs_to :runner
-  
+
+  STATUS_COMPLETED  = "completed"
+  STATUS_FAILED     = "failed"
+  STATUS_PROCESSING = "processing"
+
   def complete!
     self.completed = true
     self.save!
@@ -9,11 +13,11 @@ class Image < ActiveRecord::Base
 
   def status
     if self.completed
-      return "completed"
+      return STATUS_COMPLETED
     elsif self.failed
-      return "failed"
+      return STATUS_FAILED
     else
-      return "processing"
+      return STATUS_PROCESSING
     end
   end
 end
