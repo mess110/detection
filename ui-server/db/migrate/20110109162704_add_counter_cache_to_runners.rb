@@ -9,6 +9,6 @@ class AddCounterCacheToRunners < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :images, :images_count
+    remove_column :runners, :images_count
   end
 end
