@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110107202655) do
+ActiveRecord::Schema.define(:version => 20110109162704) do
 
   create_table "images", :force => true do |t|
     t.string   "url"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20110107202655) do
     t.integer  "file_transfer_port"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "images_count",       :default => 0
   end
 
 end

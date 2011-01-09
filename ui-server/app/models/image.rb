@@ -1,6 +1,6 @@
 class Image < ActiveRecord::Base
   has_many :regions
-  belongs_to :runner
+  belongs_to :runner, :counter_cache => true
 
   validates_format_of :url,
                 :with => URI::regexp(%w(http https)), :message => "invalid url"
