@@ -8,13 +8,12 @@ UiServer::Application.routes.draw do
   match 'api/v2/detect/show' => 'api/v2/detect#show'
   match 'backend/detect_result' => 'backend/detect_result#report'
 
+  match 'backend/register' => 'backend/scheduler#register'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
-  match 'scheduler' => 'admin/scheduler#index'
-  match 'scheduler/register' => 'admin/scheduler#register'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

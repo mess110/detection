@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::SchedulerControllerTest < ActionController::TestCase
+class Backend::SchedulerControllerTest < ActionController::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true

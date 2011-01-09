@@ -20,7 +20,7 @@ get '/register' do
     :port => settings.port,
     :file_transfer_port => settings.file_transfer_port
   }
-  RestClient.get "http://#{settings.ui_server}/scheduler/register", {:params => params}
+  RestClient.get "http://#{settings.ui_server}/backend/register", {:params => params}
   'done'
 end
 
