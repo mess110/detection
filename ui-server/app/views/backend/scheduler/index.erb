@@ -1,3 +1,14 @@
+<table>
+  <tr>
+    <th>id</th>
+    <th>host</th>
+    <th>port</th>
+    <th>file_port</th>
+    <th>images</th>
+  </tr>
+  <tr>
 <% Runner.all.each do |r| %>
   <%= render :partial => "runner.haml", :locals => { :runner => r } %>
 <% end %>
+  </tr>
+</table>
