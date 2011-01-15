@@ -10,6 +10,10 @@ rescue LoadError => e
   exit 0
 end
 
+get '/' do
+  'nothing should expload'
+end
+
 get '/ping' do
   logger.info "ping me ping me ping me"
 end
