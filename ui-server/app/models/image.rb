@@ -16,15 +16,15 @@ class Image < ActiveRecord::Base
     self.completed = true
     self.save!
   end
-  
-  def recorded_fail?
+
+  def failed?
     self.failures.count != 0
   end
 
   def status
     if completed?
       return STATUS_COMPLETED
-    elsif recorded_fail?
+    elsif failed?
       return STATUS_FAILED
     else
       return STATUS_PROCESSING
