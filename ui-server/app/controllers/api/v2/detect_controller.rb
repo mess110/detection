@@ -3,7 +3,7 @@ class Api::V2::DetectController < ApplicationController
   def new
     if request.get?
       if params[:url].nil?
-        render_api_error('invalid_url', 'URL allows only http and jpg/jpeg format') and return
+        render_api_error('invalid_url', 'url parameter required') and return
       end
 
       if @img = Image.find_by_url(params[:url])
