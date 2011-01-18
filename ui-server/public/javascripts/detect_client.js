@@ -13,7 +13,7 @@ function Detect() {
           return;
         }
         if (!xp.isCompleted()) {
-          draw_not_completed();
+          draw_not_completed(image_url);
           return;
         }
 
@@ -31,8 +31,8 @@ function Detect() {
     alert(e.description);
   }
   
-  function draw_not_completed() {
-    alert("not completed");
+  function draw_not_completed(image_url) {
+    setTimeout('api.detect(\'' + image_url + '\')', 2000);
   }
 
   function draw_image(image_url, xp) {
