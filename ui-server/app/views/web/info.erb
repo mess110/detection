@@ -15,7 +15,8 @@ curl -X GET ''
 curl -X GET ''
 
 <b>Example response:</b>
-<%= render :partial => "api/v2/detect/show.builder" %>
+<% @img.completed = true %>
+<%= render :partial => "api/v2/detect/new.builder" %>
 </code></pre>
 
 <p>Any questions?</p>
