@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118121344) do
+ActiveRecord::Schema.define(:version => 20110118123905) do
 
   create_table "failures", :force => true do |t|
     t.integer  "image_id"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20110118121344) do
   create_table "images", :force => true do |t|
     t.string   "url"
     t.boolean  "completed",  :default => false
-    t.boolean  "failed",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "runner_id"
