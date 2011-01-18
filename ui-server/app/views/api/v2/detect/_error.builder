@@ -1,4 +1,4 @@
 xml.error do
-  xml.code "haha"
-  xml.description "more ahha"
+  xml.code params[:error_code]
+  xml.description params[:error_description]
 end

@@ -3,7 +3,7 @@ class Api::V2::DetectController < ApplicationController
   def new
     if request.get?
       if params[:url].nil?
-        render_api_error and return
+        render_api_error('invalid_url', 'URL allows only http and jpg/jpeg format') and return
       end
 
       if @img = Image.find_by_url(params[:url])
@@ -12,7 +12,7 @@ class Api::V2::DetectController < ApplicationController
         @img = Image.new(:url => params[:url])
         
         if !@img.valid?
-          render_api_error and return
+          render_api_error('invalid_image', 'Validtations failed') and return
         end
         
         @eta = Scheduler.process_image @img
@@ -25,9 +25,9 @@ class Api::V2::DetectController < ApplicationController
       end
     elsif request.post?
       # uploading files will be handled with post request
-      render_api_error and return
+      render_api_error('invalid_request', 'not yet implemented') and return
     else
-      render_api_error and return
+      render_api_error('invalid_request', 'put and delete now allowed') and return
     end
   end
 
