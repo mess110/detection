@@ -18,7 +18,7 @@ class Api::V2::DetectController < ApplicationController
         @eta = Scheduler.process_image @img
       end
 
-      if @img.failed?
+      if @img.recorded_fail?
         render_api_error('invalid_image', @img.failures[0].message) and return
       elsif @img.completed?
         render :partial => "show" and return
