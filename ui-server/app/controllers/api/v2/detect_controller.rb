@@ -12,13 +12,15 @@ class Api::V2::DetectController < ApplicationController
         @img = Image.new(:url => params[:url])
         
         if !@img.valid?
-          render_api_error('invalid_image', 'Validtations failed') and return
+          render_api_error('invalid_image', @img.errors[:url]) and return
         end
         
         @eta = Scheduler.process_image @img
       end
 
-      if @img.completed?
+      if @img.failed?
+        render_api_error('invalid_image', 'could not download or url doesn\'t point to jpg file') and return
+      elsif @img.completed?
         render :partial => "show" and return
       else
         render :partial => "new" and return

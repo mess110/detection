@@ -3,9 +3,9 @@ class Image < ActiveRecord::Base
   belongs_to :runner, :counter_cache => true
 
   validates_format_of :url,
-                :with => URI::regexp(%w(http https)), :message => "invalid url"
+                :with => URI::regexp(%w(http https)), :message => "invalid_url_protocol"
   validates_format_of :url,
-                :with => /.*\.(jpg|jpeg)$/i, :message => "invalid image format"
+                :with => /.*\.(jpg|jpeg)$/i, :message => "invalid_image_format"
 
   STATUS_COMPLETED  = "completed"
   STATUS_FAILED     = "failed"
@@ -13,6 +13,11 @@ class Image < ActiveRecord::Base
 
   def complete!
     self.completed = true
+    self.save!
+  end
+  
+  def failed!
+    self.failed = true
     self.save!
   end
 

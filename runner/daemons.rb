@@ -14,19 +14,25 @@ Daemons.daemonize
 FileUtils.cd(current_directory)
 
 $logger = Logger.new("runner.log")
-$logger.info "--------------------------"
-$logger.info "Downloading from #{url}"
-file_path = Spoc::FileTransfer.download_file(url,"images")
-#file_path = "images/test.jpg"
-$logger.info "Saved to #{file_path}"
+begin
+  $logger.info "--------------------------"
+  $logger.info "Downloading from #{url}"
+  file_path = Spoc::FileTransfer.download_file(url,"images")
+  #file_path = "images/test.jpg"
+  $logger.info "Saved to #{file_path}"
 
-$logger.info "Scanning"
-regions = Spoc::LightCV.find(file_path)
-yml = YAML::dump(regions)
+  $logger.info "Scanning"
+  regions = Spoc::LightCV.find(file_path)
+  yml = YAML::dump(regions)
 
-$logger.info "Sending result to image with ID = #{id}"
-RestClient.get 'http://localhost:3000/backend/detect_result', {:params => { :image_id => id, :regions => yml}}
+  $logger.info "Sending result to image with ID = #{id}"
+  RestClient.get 'http://localhost:3000/backend/detect_result', {:params => { :image_id => id, :regions => yml}}
 
-$logger.info "deleting file #{file_path}"
-FileUtils.rm(file_path)
-$logger.info "--------------------------"
+  $logger.info "deleting file #{file_path}"
+  FileUtils.rm(file_path)
+  $logger.info "--------------------------"
+rescue Exception => e
+  RestClient.get 'http://localhost:3000/backend/detect_result', {:params => { :image_id => id, :error_message => e.message}}
+  $logger.info e.message
+  $logger.info "--------------------------"
+end
