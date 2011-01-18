@@ -7,3 +7,4 @@ runner/settings.rb
 *.o
 *.so
 *~
+*.class
