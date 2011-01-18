@@ -22,11 +22,7 @@ class Api::V2::DetectController < ApplicationController
         @eta = Scheduler.process_image @img
       end
 
-      if @img.completed?
-        render :partial => "show" and return
-      else
-        render :partial => "new" and return
-      end
+      render :partial => "new" and return
     elsif request.post?
       # uploading files will be handled with post request
       render_api_error('invalid_request', 'not yet implemented') and return
