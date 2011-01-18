@@ -9,39 +9,51 @@ function Detect() {
 
         if (xp.isError()) {
           e = xp.getError();
-          alert(e.code);
-          alert(e.description);
+          draw_error(e);
           return;
         }
         if (!xp.isCompleted()) {
-          alert("not completed");
+          draw_not_completed();
           return;
         }
 
-        var canvas = $("detection");
-        var context = canvas.getContext("2d");
-        clearContext(context, canvas.width, canvas.height);
-        var img = new Image();
-        img.src = image_url;
-        img.onload = function() {
-          canvas.width = img.width;
-          canvas.height = img.height;
-          context.drawImage(img, 0, 0);
-          context.strokeStyle = "#FFA500";
-          xp.getRegions().each(function(item) {
-            x = item.top_left_x;
-            y = item.top_left_y;
-            width = item.bottom_right_x - x;
-            height = item.bottom_right_y - y;
-            context.strokeRect(x, y, width, height);
-          });
-        }
+        draw_image(image_url, xp);
       },
       onFailure: function(){
         alert("crap");
       }
     });
   };
+  
+  function draw_error(e) {
+    alert(e.code);
+    alert(e.description);
+  }
+  
+  function draw_not_completed() {
+    alert("not completed");
+  }
+
+  function draw_image(image_url, xp) {
+    var canvas = $("detection");
+    var context = canvas.getContext("2d");
+    clearContext(context, canvas.width, canvas.height);
+    var img = new Image();
+    img.src = image_url;
+    img.onload = function() {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0);
+      context.strokeStyle = "#FFA500";
+      xp.getRegions().each(function(item) {
+        x = item.top_left_x;
+        y = item.top_left_y;
+        width = item.bottom_right_x - x;
+        height = item.bottom_right_y - y;
+        context.strokeRect(x, y, width, height);
+      });
+    }
+  }
 }
 
 function XmlParser(req) {
