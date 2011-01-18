@@ -1,8 +1,8 @@
-var text = "http://sphotos.ak.fbcdn.net/photos-ak-snc1/v272/12/29/1352704123/n1352704123_30009292_5638.jpg"
-var api = new Detect();
+var api = new DetectClient();
 
 Event.observe(window, 'load', function() {  
-  api.detect(text);
+  home_url = "http://sphotos.ak.fbcdn.net/photos-ak-snc1/v272/12/29/1352704123/n1352704123_30009292_5638.jpg"
+  api.detect(home_url);
 });
 
 function clearInput(element) {

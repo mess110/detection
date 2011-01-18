@@ -7,6 +7,10 @@ class Api::V2::DetectController < ApplicationController
       end
 
       if @img = Image.find_by_url(params[:url])
+        if @img.failed?
+          render_api_error('invalid_image', @img.failures[0].message) and return
+        end
+        
         @eta = 0
       else
         @img = Image.new(:url => params[:url])
@@ -18,9 +22,7 @@ class Api::V2::DetectController < ApplicationController
         @eta = Scheduler.process_image @img
       end
 
-      if @img.failed?
-        render_api_error('invalid_image', @img.failures[0].message) and return
-      elsif @img.completed?
+      if @img.completed?
         render :partial => "show" and return
       else
         render :partial => "new" and return

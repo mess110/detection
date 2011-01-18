@@ -1,4 +1,4 @@
-function Detect() {
+function DetectClient() {
   this.detect = function(image_url) {
     var url = "/api/v2/detect/new?url=" + image_url;
     new Ajax.Request(url, {
