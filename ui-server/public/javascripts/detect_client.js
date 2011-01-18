@@ -7,27 +7,34 @@ function Detect() {
         var response = transport.responseText;
         xp = new XmlParser(response);
 
-        if (xp.isCompleted()) {
-          var canvas = $("detection");
-          var context = canvas.getContext("2d");
-          clearContext(context, canvas.width, canvas.height);
-          var img = new Image();
-          img.src = image_url;
-          img.onload = function() {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            context.drawImage(img, 0, 0);
-            context.strokeStyle = "#FFA500";
-            xp.getRegions().each(function(item) {
-              x = item.top_left_x;
-              y = item.top_left_y;
-              width = item.bottom_right_x - x;
-              height = item.bottom_right_y - y;
-              context.strokeRect(x, y, width, height);
-            });
-          }
-        } else {
-          // image is not completed
+        if (xp.isError()) {
+          e = xp.getError();
+          alert(e.code);
+          alert(e.description);
+          return;
+        }
+        if (!xp.isCompleted()) {
+          alert("not completed");
+          return;
+        }
+
+        var canvas = $("detection");
+        var context = canvas.getContext("2d");
+        clearContext(context, canvas.width, canvas.height);
+        var img = new Image();
+        img.src = image_url;
+        img.onload = function() {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          context.drawImage(img, 0, 0);
+          context.strokeStyle = "#FFA500";
+          xp.getRegions().each(function(item) {
+            x = item.top_left_x;
+            y = item.top_left_y;
+            width = item.bottom_right_x - x;
+            height = item.bottom_right_y - y;
+            context.strokeRect(x, y, width, height);
+          });
         }
       },
       onFailure: function(){
@@ -60,6 +67,12 @@ function XmlParser(req) {
     return status == "completed";
   };
   
+  this.getError = function() {
+    code = xmlDoc.getElementsByTagName("code")[0].childNodes[0].nodeValue;
+    description = xmlDoc.getElementsByTagName("description")[0].childNodes[0].nodeValue;
+    return new ApiError(code, description);
+  }
+  
   this.isError = function() {
     return xmlDoc.getElementsByTagName("error")[0] != null;
   };
@@ -77,6 +90,11 @@ function XmlParser(req) {
     xmlDoc.loadXML(req);
     //xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
+}
+
+function ApiError(code, description) {
+  this.code = code;
+  this.description = description;
 }
 
 function Region(tlx, tly, brx, bry) {
