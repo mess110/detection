@@ -12,8 +12,3 @@ function clearInput(element) {
   }
 }
 
-function clearContext(context, width, height) {
-  context.fillStyle = "#FFFFFF";
-  context.fillRect(0, 0, width, height);
-}
-

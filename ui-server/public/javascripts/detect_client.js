@@ -25,6 +25,7 @@ function Detect() {
       }
     });
   };
+
   
   function draw_error(e) {
     alert(e.code);
@@ -32,7 +33,7 @@ function Detect() {
   }
   
   function draw_not_completed(image_url) {
-    setTimeout('api.detect(\'' + image_url + '\')', 2000);
+    setTimeout('api.detect(\'' + image_url + '\')', 3000);
   }
 
   function draw_image(image_url, xp) {
@@ -54,6 +55,11 @@ function Detect() {
         context.strokeRect(x, y, width, height);
       });
     }
+  }
+  
+  function clearContext(context, width, height) {
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, width, height);
   }
 }
 
