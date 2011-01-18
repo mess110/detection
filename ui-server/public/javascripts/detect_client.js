@@ -20,7 +20,8 @@ function Detect() {
         draw_image(image_url, xp);
       },
       onFailure: function(){
-        alert("crap");
+        e = new ApiError("connection_error", "can not connect to runner");
+        draw_error(e);
       }
     });
   };
