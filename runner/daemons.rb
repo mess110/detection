@@ -17,12 +17,20 @@ $logger = Logger.new("runner.log")
 begin
   $logger.info "--------------------------"
   $logger.info "Downloading from #{url}"
-  file_path = Spoc::FileTransfer.download_file(url,"images")
+  begin
+    file_path = Spoc::FileTransfer.download_file(url,"images")
+  rescue
+    raise Exception.new("could not download image");
+  end
   #file_path = "images/test.jpg"
   $logger.info "Saved to #{file_path}"
 
   $logger.info "Scanning"
-  regions = Spoc::LightCV.find(file_path)
+  begin
+    regions = Spoc::LightCV.find(file_path)
+  rescue
+    raise Exception.new("might not be an image");
+  end
   yml = YAML::dump(regions)
 
   $logger.info "Sending result to image with ID = #{id}"

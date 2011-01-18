@@ -4,7 +4,7 @@ class Image < ActiveRecord::Base
   belongs_to :runner, :counter_cache => true
 
   validates_format_of :url,
-                :with => URI::regexp(%w(http https)), :message => "invalid_url_protocol"
+                :with => URI::regexp(%w(http https)), :message => "invalid_protocol"
   validates_format_of :url,
                 :with => /.*\.(jpg|jpeg)$/i, :message => "invalid_image_format"
 
