@@ -3,7 +3,9 @@ class Backend::DetectResultController < ApplicationController
     image_id = params[:image_id]
     if params[:error_message].present?
       #puts params[:error_message]
-      Image.find(image_id).failed!
+      img = Image.find(image_id)
+      img.failures << Failure.create!(:message => params[:error_message])
+      img.failed!
     else
       regions = YAML::load(params[:regions])
       regions.each do |r|

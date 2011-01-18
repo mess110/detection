@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   has_many :regions
+  has_many :failures
   belongs_to :runner, :counter_cache => true
 
   validates_format_of :url,

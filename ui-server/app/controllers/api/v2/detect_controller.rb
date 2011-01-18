@@ -19,7 +19,7 @@ class Api::V2::DetectController < ApplicationController
       end
 
       if @img.failed?
-        render_api_error('invalid_image', 'could not download or url doesn\'t point to jpg file') and return
+        render_api_error('invalid_image', @img.failures[0].message) and return
       elsif @img.completed?
         render :partial => "show" and return
       else
