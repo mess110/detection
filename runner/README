@@ -1,0 +1,4 @@
+shotgun gem is required for development
+
+To start the runner, install shotgun and type:
+  shotgun myapp.rb
