@@ -54,8 +54,8 @@ class TrainingData
   end
 end
 
-
 samples = TrainingData.new
+
 if ARGV[0] == "new"
   samples.add_subject
 else

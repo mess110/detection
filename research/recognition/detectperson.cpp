@@ -25,12 +25,11 @@ CvMat    * projectedTrainFaceMat = 0;
 String cascadeName = "haarcascades/haarcascade_frontalface_alt.xml";
 
 int  findNearestNeighbor(float * projectedTestFace);
-void cleanup(CvCapture* capture);
-int detectFace( Mat& img, CascadeClassifier& cascade, double scale, int count);
+void detectFace( Mat& img, CascadeClassifier& cascade, double scale);
 void recognize();
 int  loadFaceImgArr(char * filename);
-int loadTrainingData(CvMat ** pTrainPersonNumMat);
-void rec(Mat& img);
+int loadTrainingData(CvMat ** pTrainPersonNumMat, char* storageData);
+void rec(Mat& img, char* storageData);
 
 int main( int argc, const char** argv )
 {
@@ -51,7 +50,6 @@ int main( int argc, const char** argv )
     if( capture )
     {
         Mat frame, frameCopy;
-        int count = 1;
         for(;;)
         {
           IplImage* iplImg = cvQueryFrame( capture );
@@ -63,10 +61,10 @@ int main( int argc, const char** argv )
           else
             flip( frame, frameCopy, 0 );
           
-          count = detectFace(frame, cascade, 1, count);
+          detectFace(frame, cascade, 1);
 
           if( waitKey( 10 ) >= 0 ) {
-             cleanup(capture);
+             cvReleaseCapture( &capture );
              break;
           }
         }
@@ -75,7 +73,7 @@ int main( int argc, const char** argv )
     return 0;
 }
 
-int detectFace( Mat& img, CascadeClassifier& cascade, double scale, int count)
+void detectFace( Mat& img, CascadeClassifier& cascade, double scale)
 {
     int i = 0;
     double t = 0;
@@ -101,53 +99,40 @@ int detectFace( Mat& img, CascadeClassifier& cascade, double scale, int count)
         cv::resize(smallImgROI, dst, dst.size(), 0, 0, INTER_LINEAR);
         //equalize
         cv::equalizeHist( dst, dst );
-        rec(dst);
+        rec(dst, (char*) "facedata.xml");
         cv::imshow( "result", img );
     }
-    count = count++;
-    return count;
 }
 
-void cleanup(CvCapture* capture)
-{
-  cvReleaseCapture( &capture );
-}
-
-void rec(Mat& face)
+void rec(Mat& face, char* storageData)
 {
   int i, nTestFaces  = 0;         // the number of test images
 	CvMat * trainPersonNumMat = 0;  // the person numbers during training
 	float * projectedTestFace = 0;
 	
-	if( !loadTrainingData( &trainPersonNumMat ) ) return;
+	if( !loadTrainingData( &trainPersonNumMat, storageData ) ) return;
 	
 	projectedTestFace = (float *)cvAlloc( nEigens*sizeof(float) );
 	int iNearest, nearest, truth;
-  cv::imwrite("kiki.pgm", face);
-  IplImage * sad = cvLoadImage("kiki.pgm", CV_LOAD_IMAGE_GRAYSCALE);
-		// project the test image onto the PCA subspace
-		cvEigenDecomposite(
-			sad,
-			nEigens,
-			eigenVectArr,
-			0, 0,
-			pAvgTrainImg,
-			projectedTestFace);
+	
+	//convert from Mat& to IplImage*
+  IplImage iplFace = face;
+  // project the test image onto the PCA subspace
+  cvEigenDecomposite(&iplFace, nEigens,	eigenVectArr,	0, 0,	pAvgTrainImg,	projectedTestFace);
 
-		iNearest = findNearestNeighbor(projectedTestFace);
+  iNearest = findNearestNeighbor(projectedTestFace);
   cout << iNearest << endl;
 }
 
-int loadTrainingData(CvMat ** pTrainPersonNumMat)
+int loadTrainingData(CvMat ** pTrainPersonNumMat, char* storageData)
 {
 	CvFileStorage * fileStorage;
 	int i;
 
-	// create a file-storage interface
-	fileStorage = cvOpenFileStorage( "facedata.xml", 0, CV_STORAGE_READ );
+	fileStorage = cvOpenFileStorage( storageData, 0, CV_STORAGE_READ );
 	if( !fileStorage )
 	{
-		fprintf(stderr, "Can't open facedata.xml\n");
+		fprintf(stderr, "Can't open training data! %s\n", storageData);
 		return 0;
 	}
 
@@ -165,9 +150,7 @@ int loadTrainingData(CvMat ** pTrainPersonNumMat)
 		eigenVectArr[i] = (IplImage *)cvReadByName(fileStorage, 0, varname, 0);
 	}
 
-	// release the file-storage interface
 	cvReleaseFileStorage( &fileStorage );
-
 	return 1;
 }
 
