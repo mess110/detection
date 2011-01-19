@@ -1,0 +1,7 @@
+detectface grabs rectangles containing faces from webcam and transforms them.
+
+eigen trains a face from the grabed rectangles detectface used
+
+use app.rb as an interface between these two
+
+detectperson tries to guess which person it is.
