@@ -77,10 +77,10 @@ public class DOMParser {
 		int bry = Integer.valueOf(attr.getNamedItem("bottom_right_y").getNodeValue());
 		
 		Region r = new Region();
-		r.setBrx(tlx);
-		r.setBry(tly);
-		r.setTlx(brx);
-		r.setTly(bry);
+		r.setTlx(tlx);
+		r.setTly(tly);
+		r.setBrx(brx);
+		r.setBry(bry);
 		
 		return r;
 	}
