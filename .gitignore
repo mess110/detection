@@ -8,3 +8,8 @@ runner/settings.rb
 *.so
 *~
 *.class
+research/recognition/detectface
+research/recognition/detectperson
+research/recognition/eigen
+research/recognition/people/s*
+research/recognition/facedata.xml
