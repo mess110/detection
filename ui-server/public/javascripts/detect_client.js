@@ -1,5 +1,8 @@
+var NOT_COMPLETED_TIMEOUT = 3000;
+
 function DetectClient() {
   this.detect = function(image_url) {
+    $("loader").style.visibility = "visible";
     var url = "/api/v2/detect/new?url=" + image_url;
     new Ajax.Request(url, {
       method:'get',
@@ -18,10 +21,11 @@ function DetectClient() {
         }
 
         draw_image(image_url, xp);
+        $("loader").style.visibility = "hidden";
       },
       onFailure: function(){
-        e = new ApiError("connection_error", "can not connect to runner");
-        draw_error(e);
+        $("loader").style.visibility = "hidden";
+        draw_error(new ApiError("connection_error", "can not connect to runner"));
       }
     });
   };
@@ -33,13 +37,14 @@ function DetectClient() {
       clearContext(context, canvas.width, canvas.height);
       canvas.height = 50;
       $("shout").innerHTML = e.description;
+      $("loader").style.visibility = "hidden";
     } else {
       alert(e.code + " not handled");
     }
   }
-  
+
   function draw_not_completed(image_url) {
-    setTimeout('api.detect(\'' + image_url + '\')', 3000);
+    setTimeout('api.detect(\'' + image_url + '\')', NOT_COMPLETED_TIMEOUT);
   }
 
   function draw_image(image_url, xp) {
