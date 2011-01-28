@@ -25,7 +25,8 @@ function DetectClient() {
       },
       onFailure: function(){
         $("loader").style.visibility = "hidden";
-        draw_error(new ApiError("connection_error", "can not connect to runner"));
+        e = new ApiError("connection_error", "can not connect to runner")
+        draw_error(e);
       }
     });
   };

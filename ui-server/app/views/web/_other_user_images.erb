@@ -1,0 +1,5 @@
+<div class="thumbnails">
+  <% @images.each do |img| %>
+    <a href="#" onClick="api.detect('<%= img.url %>');"><img src='<%= img.url %>'></a>
+  <% end %>
+</div>
