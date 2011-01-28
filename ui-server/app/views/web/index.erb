@@ -10,9 +10,6 @@
           onKeyDown="if (event.keyCode == 13) api.detect($('urlbox').value);"/>
       <a href="javascript: api.detect($('urlbox').value);"><b>TEST</b></a><br />
     </p>
-    <center><img src="/images/loader.gif" id="loader" style="visibility: hidden;"/></center>
-    <canvas id="detection" width="600" height="50">
-      Your Browser is <b>not supported</b>! We recommend Chromium, Mozilla Firefox, Google Chrome or Opera
-    </canvas>
+    <%= render :partial => "canvas" %>
   </div>
 </center>
