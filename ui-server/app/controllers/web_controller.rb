@@ -1,7 +1,7 @@
 class WebController < ApplicationController
   def index
     @fln = JSON.parse(RestClient.get "http://github.com/api/v2/json/repos/show/mess110/detection") || 0
-    @images = Image.find(:all, :order => "created_at desc", :limit => 5)
+    @images = Image.find(:all, :order => "created_at desc", :limit => 12)
   end
   
   def try
