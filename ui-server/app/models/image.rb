@@ -1,16 +1,20 @@
 class Image < ActiveRecord::Base
+
+  INVALID_PROTOCOL = "invalid_protocol"
+  INVALID_IMAGE_FORMAT = "invalid_image_fornat"
+
+  STATUS_COMPLETED  = "completed"
+  STATUS_FAILED     = "failed"
+  STATUS_PROCESSING = "processing"
+
   has_many :regions
   has_many :failures
   belongs_to :runner, :counter_cache => true
 
   validates_format_of :url,
-                :with => URI::regexp(%w(http https)), :message => "invalid_protocol"
+                :with => URI::regexp(%w(http https)), :message => INVALID_PROTOCOL
   validates_format_of :url,
-                :with => /.*\.(jpg|jpeg)$/i, :message => "invalid_image_format"
-
-  STATUS_COMPLETED  = "completed"
-  STATUS_FAILED     = "failed"
-  STATUS_PROCESSING = "processing"
+                :with => /.*\.(jpg|jpeg)$/i, :message => INVALID_IMAGE_FORMAT
 
   def complete!
     self.completed = true

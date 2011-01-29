@@ -36,7 +36,7 @@ function DetectClient() {
     var context = canvas.getContext("2d");
     clearContext(context, canvas.width, canvas.height);
     canvas.height = 50;
-    $("shout").innerHTML = e.code;
+    $("shout").innerHTML = e.description;
     $("loader").style.visibility = "hidden";
   }
 

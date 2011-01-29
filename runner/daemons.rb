@@ -20,7 +20,7 @@ begin
   begin
     file_path = Spoc::FileTransfer.download_file(url,"images")
   rescue
-    raise Exception.new("could not download image");
+    raise Exception.new("Can not download image")
   end
   #file_path = "images/test.jpg"
   $logger.info "Saved to #{file_path}"
@@ -29,7 +29,7 @@ begin
   begin
     regions = Spoc::LightCV.find(file_path)
   rescue
-    raise Exception.new("might not be an image");
+    raise Exception.new("Can not open image to scan for faces")
   end
   yml = YAML::dump(regions)
 

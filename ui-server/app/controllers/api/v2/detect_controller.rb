@@ -15,8 +15,8 @@ class Api::V2::DetectController < ApplicationController
       else
         @img = Image.new(:url => params[:url])
         
-        if !@img.valid?
-          render_api_error(@img.errors[:url].first, 'invalid_image') and return
+         if !@img.valid?
+          render_api_error(@img.errors[:url].first, @img.errors[:url].first) and return
         end
         
         @eta = Scheduler.process_image @img
