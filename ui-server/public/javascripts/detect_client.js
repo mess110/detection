@@ -32,16 +32,12 @@ function DetectClient() {
   };
 
   function draw_error(e) {
-    if (e.code == "invalid_image") {
-      var canvas = $("detection");
-      var context = canvas.getContext("2d");
-      clearContext(context, canvas.width, canvas.height);
-      canvas.height = 50;
-      $("shout").innerHTML = e.description;
-      $("loader").style.visibility = "hidden";
-    } else {
-      alert(e.code + " not handled");
-    }
+    var canvas = $("detection");
+    var context = canvas.getContext("2d");
+    clearContext(context, canvas.width, canvas.height);
+    canvas.height = 50;
+    $("shout").innerHTML = e.code;
+    $("loader").style.visibility = "hidden";
   }
 
   function draw_not_completed(image_url) {
