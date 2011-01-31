@@ -20,6 +20,9 @@ class Api::V2::DetectController < ApplicationController
         end
         
         @eta = Scheduler.process_image @img
+        if @eta == Scheduler::RUNNERS_FULL
+          render_api_error('over_capacity', "Our runners are full. Please try again later.") and return
+        end
       end
 
       render :partial => "new" and return
