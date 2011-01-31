@@ -1,4 +1,7 @@
 set :ui_server, 'localhost:3000'
+set :user, 'changeme'
+set :pass, 'changeme'
+
 set :host, 'localhost'
 set :port, 3001
 set :file_transfer_port, 4001

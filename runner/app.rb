@@ -33,6 +33,8 @@ get '/detect' do
   image_id = params[:image_id]
   logger.info "Request to download #{url} with image_id #{image_id} received"
 
-  system("ruby1.9.1 daemons.rb #{image_id} #{url.shellescape} &")
+  cmd = "ruby1.9.1 daemons.rb #{image_id} #{url.shellescape} #{settings.user.shellescape} #{settings.pass.shellescape}&"
+  logger.info "Executing: #{cmd}"
+  system(cmd)
   '42'
 end

@@ -7,6 +7,8 @@ require 'logger'
 
 id  = ARGV[0]
 url = ARGV[1]
+$user = ARGV[2]
+$pass = ARGV[3]
 
 # remember and change back to current directory because daemonize chages to '/'
 current_directory = File.dirname(File.expand_path($0))
@@ -34,13 +36,13 @@ begin
   yml = YAML::dump(regions)
 
   $logger.info "Sending result to image with ID = #{id}"
-  RestClient.get 'http://localhost:3000/backend/detect_result', {:params => { :image_id => id, :regions => yml}}
+  RestClient.get "http://#{$user}:#{$pass}@localhost:3000/backend/detect_result", {:params => { :image_id => id, :regions => yml}}
 
   $logger.info "deleting file #{file_path}"
   FileUtils.rm(file_path)
   $logger.info "--------------------------"
 rescue Exception => e
-  RestClient.get 'http://localhost:3000/backend/detect_result', {:params => { :image_id => id, :error_message => e.message}}
+  RestClient.get "http://#{$user}:#{$pass}@localhost:3000/backend/detect_result", {:params => { :image_id => id, :error_message => e.message}}
   $logger.info e.message
   $logger.info "--------------------------"
 end
