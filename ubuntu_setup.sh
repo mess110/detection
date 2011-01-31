@@ -7,7 +7,7 @@ sudo apt-get install git subversion cmake build-essential libgtk2.0-dev libjpeg8
 cd ~/Public
 mkdir opencv
 cd opencv
-svn co https://opencvlibrary.svn.sourceforge.net/svnroot/opencvlibrary/tags/latest_tested_snapshot
+svn co https://code.ros.org/svn/opencv/tags/latest_tested_snapshot
 cd latest_tested_snapshot/opencv
 mkdir release
 cd release
