@@ -22,4 +22,13 @@ curl -X GET 'http://detection.myvhost.de/api/v2/detect/new?url=[http://url.to.my
 <%= render :partial => "api/v2/detect/new.builder" %>
 </code></pre>
 
+<br />
+<p><b>error response</b> - returned an error from a detection request</p>
+<pre><code>
+curl -X GET 'http://detection.myvhost.de/api/v2/detect/new?url=[http://url.to.my/image.jpg]'
+
+<b>Example error:</b>
+<%= render :partial => "api/v2/detect/error.builder", :locals => { :params => {:error_code => "invalid_image", :error_description => "You will find a description here. The code node is also useful!"}} %>
+</code></pre>
+
 <p>Any questions?</p>
