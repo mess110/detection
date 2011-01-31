@@ -4,10 +4,6 @@ class WebController < ApplicationController
     @images = Image.find(:all, :conditions => { :completed => true}, :order => "created_at desc", :limit => 12)
   end
   
-  def try
-    
-  end
-  
   def info
     @img = Image.new(:url => "http://url.to.my/image.jpg")
     @img.id = 42

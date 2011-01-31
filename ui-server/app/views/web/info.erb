@@ -1,18 +1,21 @@
 <h3>API Overview</h3>
 <p>Frontal face detection webservice for your computer vision needs. Handles the complex process of detecting the position of faces in images completely transparent to the user. Since it is done server-side, the user can focus on developing the rich applications dreamed with one less thing to worry about.</p>
 <p>This service is <b>free</b> and it will stay <b>free</b>! If you want you can <a href="/thanks">donate</a> to help with hosting/beer fees. (student life is fun)</p>
+<h3>How it works</h3>
+<p>It is designed to be pretty simple. The example below demonstrates how to use the API. A user needs to tell the API to detect the faces in an image and will get the first example response below.</p>
+<p>To get the results from the response the user needs to make a request to the same URL. If the image is finished the second example below will be displayed. (notice the status node)</p>
 <h3>Examples usage - using <a href="http://curl.haxx.se/">curl</a></h3>
 <br />
 <p><b>detect request</b> - initiates a new face detection request</p>
 <pre><code>
-curl -X GET ''
+curl -X GET 'http://detection.myvhost.de/api/v2/detect/new?url=[http://url.to.my/image.jpg]'
 
 <b>Example response:</b>
 <%= render :partial => "api/v2/detect/new.builder" %>
 </code></pre>
-<p><b>show request</b> - returns the coordinates of faces from the detect request</p>
+<p><b>detect request (again)</b> - returns the coordinates of faces from the detect request</p>
 <pre><code>
-curl -X GET ''
+curl -X GET 'http://detection.myvhost.de/api/v2/detect/new?url=[http://url.to.my/image.jpg]'
 
 <b>Example response:</b>
 <% @img.completed = true %>

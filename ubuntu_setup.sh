@@ -19,7 +19,7 @@ sudo ldconfig -v
 # installing light plugin
 sudo gem install jeweler
 cd $DETECTION_DIRECTORY
-cd detection-gems/light-opencv-wrapper
+cd spoc
 sh install.sh
 
 # installing runner
@@ -27,5 +27,5 @@ sudo apt-get install postgresql-8.4 pgadmin3 libpq-dev
 
 sudo gem install bundler
 cd $DETECTION_DIRECTORY
-cd detection-runner
+cd runner
 sudo bundle install
