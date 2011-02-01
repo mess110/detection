@@ -12,16 +12,6 @@ body {
 #head {
   text-align:center;
 }
-#head h1 {
-  color:#000;
-  font-family:georgia, 'bitstream vera serif', serif;
-  font-size:4.5em;
-  font-weight:normal;
-  letter-spacing:-3px;
-  line-height:1;
-  margin:0;
-  padding:20px 0 8px 0;
-}
 #head h1 a, #head h1 a:link, #head h1 a:visited, #head h1 a:hover {
   color:#100;
   text-decoration:none;
@@ -91,27 +81,13 @@ body {
 
 /* HEADINGS */
 
-h1, h2, h3 { color:#000 }
-h1 a, h2 a, h3 a { color:#000 }
-h1 {
-  font-size:2em;
-  letter-spacing:-1px;
-  margin-bottom:0;
-}
-h2 {
-  font-size:1.5em;
-  letter-spacing:-1px;
-  margin:1.25em 0 -0.32em 0;
-}
 h3 {
+  color:#000;
   font-size:1.1em;
   letter-spacing:-1px;
   margin:1.8em 0 -0.25em 0;
 }
-h3 code {
-  font-size:1.1em;
-  color:#000;
-}
+h3 a { color:#000 }
 
 /* LINKS */
 a {
@@ -125,11 +101,6 @@ a:hover {
 a img {
   border:none;
 }
-a.out {
-  background: url('/images/link-out.gif') center right no-repeat;
-  padding-right: 12px;
-}
-
 
 /* CODE */
 
@@ -156,45 +127,16 @@ p.warning {
   overflow: auto;
 }
 
-p.notice {
-  width: 400px;
-}
 code, tt {
   font-size:0.85em;
   color:#222;
-}
-h1 code, h2 code, h3 code, h4 code {
-  color:#111;
 }
 pre code {
   font-size:1em;
   color:#222;
 }
 
-table
-{
-border-collapse:collapse;
-}
-
-table, tr, th, td
-{
-padding: 3px;
-text-align:right;
-width: 10px;
-}
-
 input#urlbox
 {
   width: 90%;
-}
-
-input.login
-{
-  width: 100px;
-}
-
-input.userinfo {
-  background-color: #f4f5f5;
-  border: 0px;
-  text-align: center;
 }
