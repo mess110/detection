@@ -1,10 +1,10 @@
 DETECTION_DIRECTORY=$(cd `dirname $0` && pwd)
 
 # installing dependecies
-sudo apt-get install git subversion cmake build-essential libgtk2.0-dev libjpeg8-dev pkg-config
+sudo apt-get update; apt-get upgrade; apt-get install sudo git-core subversion cmake build-essential libgtk2.0-dev libjpeg-dev pkg-config postgresql libpq-dev libopenssl-ruby;
 
 # setting up opencv
-cd ~/Public
+cd ~
 mkdir opencv
 cd opencv
 svn co https://code.ros.org/svn/opencv/tags/latest_tested_snapshot
@@ -22,10 +22,6 @@ cd $DETECTION_DIRECTORY
 cd spoc
 sh install.sh
 
-# installing runner
-sudo apt-get install postgresql-8.4 pgadmin3 libpq-dev
-
-sudo gem install bundler
 cd $DETECTION_DIRECTORY
 cd runner
 sudo bundle install
