@@ -2,7 +2,7 @@
   <div class="thumbnails">
     <% @images.each do |img| %>
       <a href="#" onClick="api.detect('<%= img.url %>');">
-        <img id="<%= img.id %>" src='images/loader.gif'>
+        <img id="<%= img.id %>" src='images/loader.gif' />
         <script>
           $('<%= img.id %>').onload = function() {
             this.src='<%= img.url %>';
