@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110201074743) do
+ActiveRecord::Schema.define(:version => 20110201100222) do
 
   create_table "failures", :force => true do |t|
     t.integer  "image_id"
@@ -44,7 +44,8 @@ ActiveRecord::Schema.define(:version => 20110201074743) do
     t.integer  "file_transfer_port"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "images_count",       :default => 0
+    t.integer  "images_count",        :default => 0
+    t.integer  "max_jobs_per_minute", :default => 20, :null => false
   end
 
 end

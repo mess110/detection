@@ -2,14 +2,17 @@ class Runner < ActiveRecord::Base
 
   has_many :images
   
-  def self.assign img
-    r = Runner.first(:order => 'images_count asc')
-    img.runner_id = r.id
-    img.save!
-    return r
+  scope :free, lambda {
+    Runner.all.select{ |r| r if r.has_free_jobs }
+  }
+  
+  def has_free_jobs
+    max_jobs_per_minute > jobs_per_minute
   end
-
-  def details
-    id.to_s
+  
+  private
+  
+  def jobs_per_minute
+    Image.where('created_at > ? AND runner_id = ?', Time.now - 60, id).count
   end
 end
