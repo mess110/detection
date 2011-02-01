@@ -16,6 +16,10 @@ class Image < ActiveRecord::Base
   validates_format_of :url,
                 :with => /.*\.(jpg|jpeg)$/i, :message => INVALID_IMAGE_FORMAT
 
+  scope :samples, lambda {
+    where('completed = ? and karma >= ?', true, 1.0).order("images.created_at DESC").limit(6)
+  }
+
   def complete!
     self.completed = true
     self.save!

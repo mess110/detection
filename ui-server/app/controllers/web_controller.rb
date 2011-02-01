@@ -1,7 +1,7 @@
 class WebController < ApplicationController
   def index
     #@fln = JSON.parse(RestClient.get "http://github.com/api/v2/json/repos/show/mess110/detection") || 0
-    @images = Image.find(:all, :conditions => ['completed = ? and karma >= ?', true, 1.0], :order => "created_at desc", :limit => 6)
+    @images = Image.samples
   end
   
   def info
