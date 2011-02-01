@@ -132,12 +132,12 @@ code, tt {
   font-size:0.85em;
   color:#222;
 }
+
 pre code {
   font-size:1em;
   color:#222;
 }
 
-input#urlbox
-{
+input#urlbox {
   width: 90%;
 }
