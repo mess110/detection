@@ -1,8 +1,5 @@
 <%= render :partial => "other_user_images", :locals => { :is_on_demo_page => true } %>
 <center>
-  <p class="warning" id="shout">- Face Detection Webservice -</p>
-</center>
-<center>
   <div id="main">
     <p class="warning">
       URL
@@ -10,6 +7,7 @@
           onKeyDown="if (event.keyCode == 13) api.detect($('urlbox').value);"/>
       <a href="javascript: api.detect($('urlbox').value);"><b>TEST</b></a><br />
     </p>
+    <p class="warning" id="shout">- Face Detection Webservice -</p>
     <%= render :partial => "canvas" %>
   </div>
 </center>

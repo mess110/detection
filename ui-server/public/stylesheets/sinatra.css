@@ -141,3 +141,40 @@ pre code {
 input#urlbox {
   width: 90%;
 }
+
+.div_highlight {
+  background:#f4f5f5;
+  border:2px solid #d5d0d2;
+  line-height:1.15;
+  padding: 50px; 
+  text-align: center;
+}
+
+.blurb {
+  width: 780px;
+  height: 300px;
+  margin: 0 32px;
+  position: relative;
+}
+
+.leftcolumn {
+  position:absolute;
+  left: 0px;
+  width: 230px;
+  text-align: justify;
+}
+
+.middlecolumn {
+  position:absolute;
+  left: 275px;
+  width: 230px;
+  text-align: justify;
+}	
+
+.rightcolumn {
+  position:absolute;
+  left: 550px;
+  width: 230px;
+  text-align: justify;
+}	
+
