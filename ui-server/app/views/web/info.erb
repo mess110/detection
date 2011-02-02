@@ -1,33 +1,34 @@
 <h3>API Overview</h3>
-<p>Frontal face detection webservice for your computer vision needs. Handles the complex process of detecting the position of faces in images completely transparent to the user. Since it is done server-side, the user can focus on developing the rich applications dreamed with one less thing to worry about.</p>
+<p>The API solves the complex problem of detecting the position of faces in images. This is achieved transparent to the user and since it is offered as an API, all the user needs to do is make a HTTP Request.</p>
+<p>Details about how everything works can be found <a href="http://github.com/mess110/detection/wiki/Behind-The-Scenes" target="_new">behind the scenes</a>.</p>
 <p>This service is <b>free</b> and it will stay <b>free</b>! If you want you can <a href="/thanks">donate</a> to help with hosting/beer fees. (student life is fun)</p>
-<h3>How it works</h3>
-<p>It is designed to be pretty simple. The example below demonstrates how to use the API. A user needs to tell the API to detect the faces in an image and will get the first example response below.</p>
-<p>To get the results from the response the user needs to make a request to the same URL. If the image is finished the second example below will be displayed. (notice the status node)</p>
 <h3>Examples usage - using <a href="http://curl.haxx.se/">curl</a></h3>
 <br />
 <p><b>detect request</b> - initiates a new face detection request</p>
+<p>Detecting faces in images is achieved when a user makes a new detect request to the API. </p>
 <pre><code>
 curl -X GET 'http://detection.myvhost.de/api/v2/detect/new?url=[http://url.to.my/image.jpg]'
-
-<b>Example response:</b>
+</code></pre>
+<p>Below you will find an example response. One of the more interesting nodes is <%= "<status>" %>. The value is processing, which means the process is not completed but the request is.</p>
+<pre><code>
 <%= render :partial => "api/v2/detect/new.builder" %>
 </code></pre>
+<br />
 <p><b>detect request (again)</b> - returns the coordinates of faces from the detect request</p>
+<p>Since we did not get the results yet, we will make the same request.</p>
 <pre><code>
 curl -X GET 'http://detection.myvhost.de/api/v2/detect/new?url=[http://url.to.my/image.jpg]'
-
-<b>Example response:</b>
+</code></pre>
+<p>Below we notice the response changed. <%= "<status>" %> is now "completed" and the regions array contains the coordinates of faces.</p>
+<pre><code>
 <% @img.completed = true %>
 <%= render :partial => "api/v2/detect/new.builder" %>
 </code></pre>
-
 <br />
-<p><b>error response</b> - returned an error from a detection request</p>
+<p>
+<p><b>error response</b> - returned an error from a detect request</p>
+<p>In case of an error (eg: URL doesn't point to jpeg) the fallowing response will be shown to the user.</p>
 <pre><code>
-curl -X GET 'http://detection.myvhost.de/api/v2/detect/new?url=[http://url.to.my/image.jpg]'
-
-<b>Example error:</b>
 <%= render :partial => "api/v2/detect/error.builder", :locals => { :params => {:error_code => "invalid_image", :error_description => "You will find a description here. The code node is also useful!"}} %>
 </code></pre>
 
