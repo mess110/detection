@@ -1,16 +1,20 @@
 <center>
   <div class="thumbnails">
     <% @images.each do |img| %>
-      <a href="#" onClick="api.detect('<%= img.url %>');">
-        <img id="<%= img.id %>" src='images/loader.gif' />
-        <script>
-          $('<%= img.id %>').onload = function() {
-            this.src='<%= img.url %>';
-            
-            // Firefox and I assume IE will continue in an infinite loop otherwise
-            this.onload = null;
-          }
-        </script>
+      <% if is_on_demo_page %>
+        <a href="#" onClick="api.detect('<%= img.url %>');">
+      <% else %>
+        <a href="demo?demo_url=<%= img.url %>">
+      <% end %>
+      <img id="<%= img.id %>" src='images/loader.gif' />
+      <script>
+        $('<%= img.id %>').onload = function() {
+          this.src='<%= img.url %>';
+          
+          // Firefox and I assume IE will continue in an infinite loop otherwise
+          this.onload = null;
+        }
+      </script>
       </a>
     <% end %>
   </div>

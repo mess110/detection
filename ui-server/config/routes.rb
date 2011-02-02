@@ -3,6 +3,7 @@ UiServer::Application.routes.draw do
   match 'home' => 'web#index'
   match 'thanks' => 'web#thanks'
   match 'info' => 'web#info'
+  match 'demo' => 'web#demo'
 
   match 'api/v2/detect/new' => 'api/v2/detect#new'
   match 'api/v2/detect/show' => 'api/v2/detect#show'

@@ -1,15 +1,18 @@
-<%= render :partial => "other_user_images" %>
 <center>
-  <p class="warning" id="shout">- Face Detection Webservice -</p>
+  <div><h1>face detection made simple</h1><div>
 </center>
-<center>
-  <div id="main">
-    <p class="warning">
-      URL
-      <input type="text" id="urlbox" value="URL to jpg image" onFocus="clearInput(this);"
-          onKeyDown="if (event.keyCode == 13) api.detect($('urlbox').value);"/>
-      <a href="javascript: api.detect($('urlbox').value);"><b>TEST</b></a><br />
-    </p>
-    <%= render :partial => "canvas" %>
+<div>
+  <h2>Introducing Detection API</h2>
+  <div>
+    <p>Audiobaba is a next generation music search engine that allows you to find songs by acoustic similarity. Until now, there was no easy to way to browse for new music.</p>
   </div>
-</center>
+  <div>
+    <p>Audiobaba lets you tell it what kind of music you like and returns results that sound like it but are in fact different. Because deep down we just want more of the stuff we already like.</p>
+  </div>
+  <div>
+    <p>To find out more about how Audiobaba works and how you can help improve results, or to submit your own music, please <a href="demo">click here</a> to read our FAQ.</p>
+  </div>
+</div>
+<div>
+<%= render :partial => "other_user_images", :locals => { :is_on_demo_page => false } %>
+</div>

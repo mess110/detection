@@ -4,6 +4,14 @@ class WebController < ApplicationController
     @images = Image.samples
   end
   
+  def demo
+    @demo_url = "http://sphotos.ak.fbcdn.net/photos-ak-snc1/v272/12/29/1352704123/n1352704123_30009292_5638.jpg"
+    if !params[:demo_url].nil?
+      @demo_url = params[:demo_url]
+    end
+    @images = Image.samples
+  end
+  
   def info
     @img = Image.new(:url => "http://url.to.my/image.jpg")
     @img.id = 42
