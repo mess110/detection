@@ -31,7 +31,7 @@ VALUE method_detect(VALUE self, VALUE filename, VALUE cascade_path) {
     if (!img)
     {
       fprintf(stderr, "ERROR: Could not load image\n");
-      return ary;
+      return -1;
     }
     static CvMemStorage* storage = 0;
     static CvHaarClassifierCascade* cascade = 0;

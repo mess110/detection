@@ -12,6 +12,8 @@ module Spoc
         raise "could not load cascade" if !File.exists?(DEFAULT_CASCADE_PATH)
 
         light_opencv_array = detect(file, DEFAULT_CASCADE_PATH)
+        raise "invalid image" if light_opencv_array == -1
+        
         return format light_opencv_array
       end
     end
