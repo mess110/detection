@@ -4,7 +4,6 @@ spoc/Makefile
 spoc/images
 ui-server/Gemfile.lock
 ui-server/config/database.yml
-runner/settings.rb
 *.log
 *.o
 *.so
@@ -13,5 +12,7 @@ runner/settings.rb
 research/recognition/detectface
 research/recognition/detectperson
 research/recognition/eigen
-research/recognition/people/s*
+research/recognition/people/s*/*
 research/recognition/facedata.xml
+runner/config/detect_settings.rb
+runner/config/image_settings.rb

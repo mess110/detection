@@ -38,7 +38,7 @@ class Api::V2::DetectController < ApplicationController
       end
       
       filename =  params[:file].original_filename
-      path = File.join("public/data", filename)
+      path = File.join("public", filename)
       file_content = params[:file].read
       File.open(path, "wb") { |f| f.write(file_content) }
       render_api_error('invalid_request', "console output") and return
