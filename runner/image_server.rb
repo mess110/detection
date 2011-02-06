@@ -5,18 +5,14 @@ require 'shellwords'
 require 'logger'
 
 begin
-  require './settings.rb'
+  require './config/image_settings.rb'
 rescue LoadError => e
-  puts "Configure settings.rb!"
+  puts "Edit ./config/image_settings.rb!"
   exit 0
 end
 
 get '/' do
-  'nothing should expload'
-end
-
-get '/ping' do
-  logger.info "ping me ping me ping me"
+  'image server'
 end
 
 get '/register' do
@@ -34,7 +30,7 @@ get '/detect' do
   image_id = params[:image_id]
   logger.info "Request to download #{url} with image_id #{image_id} received"
 
-  cmd = "ruby daemon.rb #{image_id} #{url.shellescape} #{settings.user.shellescape} #{settings.pass.shellescape}&"
+  cmd = "ruby1.9.1 daemon.rb #{image_id} #{url.shellescape} #{settings.user.shellescape} #{settings.pass.shellescape}&"
   logger.info "Executing: #{cmd}"
   system(cmd)
   '42'

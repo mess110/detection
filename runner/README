@@ -1,4 +1,7 @@
 shotgun gem is required for development
 
-To start the runner, install shotgun and type:
-  shotgun myapp.rb
+To start the detect runner type:
+  shotgun -I. detect_server.rb
+  
+To start the image server type:
+  shotgun -I. image_server.rb

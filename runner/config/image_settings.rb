@@ -3,8 +3,7 @@ set :user, 'changeme'
 set :pass, 'changeme'
 
 set :host, 'localhost'
-set :port, 3001
-set :file_transfer_port, 4001
+set :port, 3002
 
 helpers do
   def logger
@@ -13,5 +12,5 @@ helpers do
 end
 
 configure do
-  LOGGER = Logger.new("runner.log")
+  LOGGER = Logger.new("image_server.log")
 end

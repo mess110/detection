@@ -1,5 +1,7 @@
 spoc/pkg/*
 spoc/output.jpg
+spoc/Makefile
+spoc/images
 ui-server/Gemfile.lock
 ui-server/config/database.yml
 runner/settings.rb
