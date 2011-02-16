@@ -176,5 +176,8 @@ input#urlbox {
   left: 550px;
   width: 230px;
   text-align: justify;
-}	
+}
 
+#detection {
+  border: 5px solid #000000;
+}
