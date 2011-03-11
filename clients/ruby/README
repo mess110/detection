@@ -1,0 +1,13 @@
+Wrapper for DetectionAPI at http://detection.myvhost.de/ written in ruby
+GPLv3 Licence
+
+
+Example usage:
+
+puts RDetectionAPI::Detect.new("http://sphotos.ak.fbcdn.net/photos-ak-snc1/v272/12/29/1352704123/n1352704123_30009292_5638.jpg")
+
+
+TODO:
+
+parse the output
+possibility to use a different base urls

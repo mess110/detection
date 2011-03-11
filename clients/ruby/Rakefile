@@ -1,0 +1,29 @@
+require 'rake'
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |s|
+    s.name        = %q{rdetectionapi}
+    s.summary     = %q{Ruby gem for DetectionAPI}
+    s.description = %q{Nothing yet}
+
+    s.files        = ["lib/*.rb"]
+    s.require_path = 'lib'
+    s.test_files   = Dir[*['test/*_test.rb']]
+
+    s.has_rdoc         = false
+
+    s.author = 'Cristian Mircea Messel'
+    s.email = 'mess110@gmail.com'
+
+    s.homepage = "https://github.com/mess110/detection"
+
+    s.platform = Gem::Platform::RUBY
+    
+    #s.add_dependency('json')
+    s.add_dependency('httparty')
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
