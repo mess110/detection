@@ -6,7 +6,7 @@ You can try the API at http://detection.myvhost.de/
 
 == Install
 
-1. Install ruby1.9.1 and git
+1. Install ruby and git
 2. Install postgresql server
 3. Run the setup script with sudo rights
 4. Start the rails application
