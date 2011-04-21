@@ -1,12 +1,7 @@
 <%= render :partial => "other_user_images", :locals => { :is_on_demo_page => true } %>
 <center>
   <div id="main">
-    <p class="warning">
-      URL
-      <input type="text" id="urlbox" value="URL to jpg image" onFocus="clearInput(this);"
-          onKeyDown="if (event.keyCode == 13) api.detect($('urlbox').value);"/>
-      <a href="javascript: api.detect($('urlbox').value);"><b>TEST</b></a><br />
-    </p>
+    <%= render :partial => "urlbox" %>
     <p class="warning" id="shout">Try one of the images above (that users scanned) or provide your own URL (to a jpeg)</p>
     <%= render :partial => "canvas" %>
   </div>
