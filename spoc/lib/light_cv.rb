@@ -8,6 +8,7 @@ module Spoc
   class LightCV
     class << self
       def find( file )
+        # TODO: specific exceptions
         raise "could not load image" if !File.exists?(file)
         raise "could not load cascade" if !File.exists?(DEFAULT_CASCADE_PATH)
 
