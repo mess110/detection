@@ -1,7 +1,7 @@
 UiServer::Application.routes.draw do
 
   match 'home' => 'web#index'
-  match 'thanks' => 'web#thanks'
+  match 'solutions' => 'web#solutions'
   match 'info' => 'web#info'
   match 'demo' => 'web#demo'
 

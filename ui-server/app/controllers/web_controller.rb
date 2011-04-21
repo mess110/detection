@@ -23,6 +23,6 @@ class WebController < ApplicationController
     @eta = 2
   end
   
-  def thanks
+  def solutions
   end
 end
