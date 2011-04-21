@@ -9,6 +9,7 @@ ui-server/config/database.yml
 *.so
 *~
 *.class
+*.lock
 research/recognition/detectface
 research/recognition/detectperson
 research/recognition/eigen

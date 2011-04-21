@@ -1,11 +1,13 @@
 class WebController < ApplicationController
+  DEMO_URL = "http://sphotos.ak.fbcdn.net/photos-ak-snc1/v272/12/29/1352704123/n1352704123_30009292_5638.jpg"
+
   def index
     #@fln = JSON.parse(RestClient.get "http://github.com/api/v2/json/repos/show/mess110/detection") || 0
     @images = Image.samples
   end
   
   def demo
-    @demo_url = "http://sphotos.ak.fbcdn.net/photos-ak-snc1/v272/12/29/1352704123/n1352704123_30009292_5638.jpg"
+    @demo_url = DEMO_URL
     if !params[:demo_url].nil?
       @demo_url = params[:demo_url]
     end
