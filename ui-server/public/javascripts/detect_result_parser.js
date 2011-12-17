@@ -12,7 +12,7 @@ function Region(tlx, tly, brx, bry) {
 
 function DetectResultParser(req) {
   this.req = req;
-  
+
   this.getRegions = function() {
     var result = new Array();
     var myregions = xmlDoc.getElementsByTagName("region");
@@ -32,13 +32,13 @@ function DetectResultParser(req) {
     status = xmlDoc.getElementsByTagName("status")[0].childNodes[0].nodeValue;
     return status == "completed";
   };
-  
+
   this.getError = function() {
     code = xmlDoc.getElementsByTagName("code")[0].childNodes[0].nodeValue;
     description = xmlDoc.getElementsByTagName("description")[0].childNodes[0].nodeValue;
     return new ApiError(code, description);
   }
-  
+
   this.isError = function() {
     return xmlDoc.getElementsByTagName("error")[0] != null;
   };

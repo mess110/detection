@@ -19,7 +19,7 @@ begin
     s.homepage = "https://github.com/mess110/detection"
 
     s.platform = Gem::Platform::RUBY
-    
+
     #s.add_dependency('json')
   end
   Jeweler::GemcutterTasks.new

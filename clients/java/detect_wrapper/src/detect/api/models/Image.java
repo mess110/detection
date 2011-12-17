@@ -9,7 +9,7 @@ public class Image {
 	private String url;
 	private int estimatedTimeOfArrival;
 	private ArrayList<Region> regions;
-	
+
 	public static final String STATUS_COMPLETED = "completed";
 	public static final String STATUS_FAILED = "failed";
 	public static final String STATUS_PROCESSING = "processing";
@@ -17,15 +17,15 @@ public class Image {
 	public Image() {
 		regions = new ArrayList<Region>();
 	}
-	
+
 	public void addRegion(Region r) {
 		regions.add(r);
 	}
-	
+
 	public boolean isCompleted() {
 		return getStatus().equals(STATUS_COMPLETED);
 	}
-	
+
 	public ArrayList<Region> getRegions() {
 		return regions;
 	}

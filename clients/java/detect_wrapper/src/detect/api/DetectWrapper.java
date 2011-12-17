@@ -11,13 +11,13 @@ import detect.api.models.Image;
 import detect.api.util.DOMParser;
 
 public class DetectWrapper {
-	
+
 	private static String BASE_URL = "http://localhost:3000";
 	private DOMParser dp;
 	private String url;
 	private ApiError ae = null;
 	private Image img = null;
-	
+
 	/**
 	 * DetectWrapper d = new DetectWrapper("");
        if (d.isSuccessful()) {
@@ -34,34 +34,34 @@ public class DetectWrapper {
 		this.url = url;
 		request();
 	}
-	
+
 	public DetectWrapper(String url, String base_url) throws Exception {
 		this.url = url;
 		BASE_URL = base_url;
 		request();
 	}
-	
+
 	public void refresh() throws Exception {
 		request();
 	}
-	
+
 	public boolean isSuccessful() {
 		return img != null;
 	}
-	
+
 	public Image getImage() {
 		return img;
 	}
-	
+
 	public ApiError getApiError() {
 		return ae;
 	}
-	
+
 	private void request() throws Exception {
 		this.ae = null;
 		this.img = null;
-		
-		String xml = executeHttpGet("/api/v2/detect/new?url=" + url);			
+
+		String xml = executeHttpGet("/api/v2/detect/new?url=" + url);
 		this.dp = new DOMParser(xml);
 		if (dp.hasNodeNamed("error")) {
 			this.ae = dp.getApiError();
@@ -69,15 +69,15 @@ public class DetectWrapper {
 			this.img = dp.getImage();
 		}
 	}
-	
+
 	private String executeHttpGet(String uri) throws Exception {
 	        URL url = new URL(BASE_URL + uri);
 	        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-	        con.setRequestMethod("GET");	
+	        con.setRequestMethod("GET");
 	      	InputStream is = con.getInputStream();
 	        InputStreamReader isr = new InputStreamReader(is);
 	        BufferedReader in = new BufferedReader(isr);
-	        
+
 	        StringBuffer sb = new StringBuffer("");
 	        String line = "";
 	        String NL = System.getProperty("line.separator");

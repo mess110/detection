@@ -2,6 +2,6 @@ shotgun gem is required for development
 
 To start the detect runner type:
   ruby detect_server.rb
-  
+
 To start the image server in development mode type:
   shotgun -I. image_server.rb
