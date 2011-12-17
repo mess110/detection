@@ -146,7 +146,7 @@ input#urlbox {
   background:#f4f5f5;
   border:2px solid #d5d0d2;
   line-height:1.15;
-  padding: 50px; 
+  padding: 50px;
   text-align: center;
 }
 
@@ -169,7 +169,7 @@ input#urlbox {
   left: 275px;
   width: 230px;
   text-align: justify;
-}	
+}
 
 .rightcolumn {
   position:absolute;

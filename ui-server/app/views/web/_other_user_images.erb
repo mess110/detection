@@ -10,7 +10,7 @@
       <script>
         $('<%= img.id %>').onload = function() {
           this.src='<%= img.url %>';
-          
+
           // Firefox and I assume IE will continue in an infinite loop otherwise
           this.onload = null;
         }

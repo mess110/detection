@@ -14,7 +14,7 @@ module Spoc
 
         light_opencv_array = detect(file, DEFAULT_CASCADE_PATH)
         raise "invalid image" if light_opencv_array == -1
-        
+
         return format light_opencv_array
       end
     end
@@ -33,6 +33,6 @@ module Spoc
       }
       regions
     end
-  end 
+  end
 end
 

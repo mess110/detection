@@ -3,9 +3,9 @@ package detect.api.models;
 public class Region {
 
 	private int tlx, tly, brx, bry;
-	
+
 	public Region() {
-		
+
 	}
 
 	public int getTlx() {

@@ -20,7 +20,7 @@ int detectFace( Mat& img, CascadeClassifier& cascade, double scale, int count);
 int main( int argc, const char** argv )
 {
     CvCapture* capture = 0;
-    
+
     cvNamedWindow( "result", 1 );
 
     CascadeClassifier cascade;
@@ -45,7 +45,7 @@ int main( int argc, const char** argv )
             frame.copyTo( frameCopy );
           else
             flip( frame, frameCopy, 0 );
-          
+
           count = detectFace(frame, cascade, 1, count);
 
           if( waitKey( 10 ) >= 0 ) {
@@ -84,7 +84,7 @@ int detectFace( Mat& img, CascadeClassifier& cascade, double scale, int count)
         cv::resize(smallImgROI, dst, dst.size(), 0, 0, INTER_LINEAR);
         //equalize
         cv::equalizeHist( dst, dst );
-        
+
         char buffer[128];
         snprintf(buffer, sizeof(buffer), "people/%d%s", count, ".pgm");
         std::cout << buffer << std::endl;
