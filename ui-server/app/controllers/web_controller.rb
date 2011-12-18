@@ -5,7 +5,7 @@ class WebController < ApplicationController
     #@fln = JSON.parse(RestClient.get "http://github.com/api/v2/json/repos/show/mess110/detection") || 0
     @images = Image.samples
   end
-  
+
   def demo
     @demo_url = DEMO_URL
     if !params[:demo_url].nil?
@@ -13,7 +13,7 @@ class WebController < ApplicationController
     end
     @images = Image.samples
   end
-  
+
   def info
     @img = Image.new(:url => "http://url.to.my/image.jpg")
     @img.id = 42
@@ -22,7 +22,7 @@ class WebController < ApplicationController
     @img.regions = regions
     @eta = 2
   end
-  
+
   def solutions
   end
 end

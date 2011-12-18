@@ -13,15 +13,15 @@ class Api::V2::DetectController < ApplicationController
         if @img.failed?
           render_api_error('invalid_image', @img.failures.last.message) and return
         end
-        
+
         @eta = 0
       else
         @img = Image.new(:url => params[:url])
-        
+
          if !@img.valid?
           render_api_error(@img.errors[:url].first, @img.errors[:url].first) and return
         end
-        
+
         @eta = Scheduler.process_image @img
         if @eta == Scheduler::RUNNERS_FULL
           render_api_error('over_capacity', "Our runners are full. Please try again later.") and return
@@ -32,11 +32,11 @@ class Api::V2::DetectController < ApplicationController
     elsif request.post?
       # TODO: remove this when implemented
       render_api_error('invalid_request', 'not yet implemented') and return
-      
+
       if params[:file].nil?
         render_api_error('invalid_url', 'file parameter required') and return
       end
-      
+
       filename =  params[:file].original_filename
       path = File.join("public", filename)
       file_content = params[:file].read

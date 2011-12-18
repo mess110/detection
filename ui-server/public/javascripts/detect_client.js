@@ -58,23 +58,23 @@ function DetectClient() {
       draw_results(context, result);
     }
   }
-  
+
   function draw_results(context, result) {
     result.getRegions().each(function(item) {
       x = item.top_left_x;
       y = item.top_left_y;
       width = item.bottom_right_x - x;
       height = item.bottom_right_y - y;
-      
+
       drawx = width / 5;
       drawy = height /4;
-      
+
       //context.fillRect(x + drawx, y + drawy, drawy, drawy);
       //context.fillRect(x + drawx + drawx * 2, y + drawy, drawy, drawy);
       context.strokeRect(x, y, width, height);
     });
   }
-  
+
   function clearContext(context, width, height) {
     context.fillStyle = "#FFFFFF";
     context.fillRect(0, 0, width, height);

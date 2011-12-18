@@ -18,9 +18,9 @@ import detect.api.models.Image;
 import detect.api.models.Region;
 
 public class DOMParser {
-	
+
 	private Document doc;
-	
+
 	public DOMParser(String xml) throws Exception {
 		this.doc = getNormalizedDocument(xml);
 	}
@@ -35,7 +35,7 @@ public class DOMParser {
 		}
 		return result;
 	}
-	
+
 	public ApiError getApiError() {
 		ApiError ae = new ApiError();
     	String[] tagList = {"code", "description"};
@@ -44,7 +44,7 @@ public class DOMParser {
     	ae.setErrorDescription(error.get(1));
     	return ae;
 	}
-	
+
 	public Image getImage() {
 		Image img = new Image();
     	String[] tagList = {"id", "status", "url"};
@@ -75,22 +75,22 @@ public class DOMParser {
 		int tly = Integer.valueOf(attr.getNamedItem("top_left_y").getNodeValue());
 		int brx = Integer.valueOf(attr.getNamedItem("bottom_right_x").getNodeValue());
 		int bry = Integer.valueOf(attr.getNamedItem("bottom_right_y").getNodeValue());
-		
+
 		Region r = new Region();
 		r.setTlx(tlx);
 		r.setTly(tly);
 		r.setBrx(brx);
 		r.setBry(bry);
-		
+
 		return r;
 	}
-	
+
     private ArrayList<String> getValues(String nodeListName, String[] tagList){
     	ArrayList<String> result = new ArrayList<String>();
     	NodeList nList = doc.getElementsByTagName(nodeListName);
-		 
+
 	    for (int temp = 0; temp < nList.getLength(); temp++) {
-	    	Node nNode = nList.item(temp);	    
+	    	Node nNode = nList.item(temp);
 	    	if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	    	   Element eElement = (Element) nNode;
 	    	   for (String tag : tagList) {
@@ -100,7 +100,7 @@ public class DOMParser {
 	    }
 	    return result;
 	}
-    
+
     private Document getNormalizedDocument(String xml) throws Exception {
     	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -109,7 +109,7 @@ public class DOMParser {
 	    doc.getDocumentElement().normalize();
 	    return doc;
     }
-	
+
 	private String getTagValue(String sTag, Element eElement){
 		NodeList nlList= eElement.getElementsByTagName(sTag).item(0).getChildNodes();
 		Node nValue = (Node) nlList.item(0);

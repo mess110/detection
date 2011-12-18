@@ -2,18 +2,18 @@ require 'fileutils'
 
 class TrainingData
   attr_accessor :pics
-  
+
   TRAINING_FILE = 'train.txt'
 
   def initialize
     @pics = []
     File.open(TRAINING_FILE, 'r') do |f|
-      while line = f.gets  
+      while line = f.gets
         parse_and_add(line)
-      end  
+      end
     end
   end
-  
+
   def count_subjects
     count = 0
     unique = []
@@ -25,19 +25,19 @@ class TrainingData
     end
     count
   end
-  
+
   def add_subject
     system("./detectface")
-    
+
     new_subject_id = count_subjects + 1
     Dir.mkdir("people") unless File.exists?("people")
     Dir.mkdir("people/s#{new_subject_id}") unless File.exists?("people/s#{new_subject_id}")
-    
+
     Dir["./people/*.pgm"].each do |pic|
       dest = "people/s#{new_subject_id}/"
       FileUtils.mv(pic, dest)
     end
-    
+
     File.open(TRAINING_FILE, 'a') do |f|
       Dir["people/s#{new_subject_id}/*.pgm"].each do |pic|
         f.puts "#{new_subject_id} #{pic}"

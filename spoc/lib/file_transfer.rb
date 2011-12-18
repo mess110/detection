@@ -32,7 +32,7 @@ module Spoc
         end
       }
     end
-    
+
     def self.client(host, port, file_path)
       begin
         file = Spoc::FileConvert.encode(file_path)
@@ -46,7 +46,7 @@ module Spoc
         s.close unless s.nil?
       end
     end
-    
+
     def self.download_file(url, dir)
       create_dir(dir)
 
@@ -62,11 +62,11 @@ module Spoc
     end
 
     private
-    
+
     def self.get_file_path(dir)
       File.join(dir, Digest::MD5.hexdigest(Time.now.to_s))
     end
-    
+
     def self.create_dir(dir)
       FileUtils.mkdir(dir) unless File.exists? dir
     end

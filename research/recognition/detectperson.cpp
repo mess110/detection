@@ -34,7 +34,7 @@ void rec(Mat& img, char* storageData);
 int main( int argc, const char** argv )
 {
     CvCapture* capture = 0;
-    
+
     cvNamedWindow( "result", 1 );
 
     // load cascade
@@ -60,7 +60,7 @@ int main( int argc, const char** argv )
             frame.copyTo( frameCopy );
           else
             flip( frame, frameCopy, 0 );
-          
+
           detectFace(frame, cascade, 1);
 
           if( waitKey( 10 ) >= 0 ) {
@@ -109,12 +109,12 @@ void rec(Mat& face, char* storageData)
   int i, nTestFaces  = 0;         // the number of test images
 	CvMat * trainPersonNumMat = 0;  // the person numbers during training
 	float * projectedTestFace = 0;
-	
+
 	if( !loadTrainingData( &trainPersonNumMat, storageData ) ) return;
-	
+
 	projectedTestFace = (float *)cvAlloc( nEigens*sizeof(float) );
 	int iNearest, nearest, truth;
-	
+
 	//convert from Mat& to IplImage*
   IplImage iplFace = face;
   // project the test image onto the PCA subspace

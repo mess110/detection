@@ -37,7 +37,7 @@ create_makefile(extension_name)
 # This adds -L and -I flags
 def get_file_as_string(filename)
   data = ''
-  f = File.open(filename, "r") 
+  f = File.open(filename, "r")
   f.each_line do |line|
     if line =~ /^ldflags\ \ \=\ \-\L\./
       data += line.gsub("\n","") + " #{`pkg-config --libs opencv`}\n"

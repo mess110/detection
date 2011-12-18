@@ -4,9 +4,9 @@ public class ApiError {
 
 	private String errorCode;
 	private String errorDescription;
-	
+
 	public ApiError() {
-		
+
 	}
 
 	public String getErrorCode() {
